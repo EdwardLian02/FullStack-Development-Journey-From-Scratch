@@ -1,0 +1,49 @@
+.image1 {
+  width: 200px;  
+  border-radius: 10px;
+}
+
+.image2{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image3{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.linkedin-signin-form{
+    margin-bottom: 20px;
+}
+
+.field-head
+{
+    margin:0px 0px 10px 0px;
+    color: grey;
+    font-size: 14px;
+}
+.email-field{
+    width: 220px;
+    height: 20px;
+}
+
+.agreement-text{
+    color: grey;
+    font-size: 14px;
+}
+
+.agree-button{
+    width: 350px;
+    padding: 10px 0px 10px 0px;
+    border-radius: 50px;
+    border-style: none;
+    background-color: rgb(77, 77, 227);
+    color: white;
+    cursor: pointer;
+}
+
