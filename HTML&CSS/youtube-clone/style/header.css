@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    height: 57px;
+    justify-content: space-between;
+}
+
+.header-first-section{
+    width: 150px;
+    background-color: aliceblue;
+}
+.header-middle-section{
+    background-color: antiquewhite;
+    flex: 1;
+    max-width: 500px;
+}
+.header-third-section{
+    background-color: aqua;
+    width: 200px;
+}
+

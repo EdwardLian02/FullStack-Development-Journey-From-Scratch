@@ -1,10 +1,4 @@
-body{
-    font-family: Roboto, Arial;
-}
 
-p{
-    margin: 0;
-}
 
 .thumbnail-section{
     margin-bottom: 12px;
@@ -13,11 +7,6 @@ p{
 .vd-thumbnail{
     width: 100%;
 }
-
-.search-box{
-    display: block;
-}
-
 
 
 .vd-preview{
