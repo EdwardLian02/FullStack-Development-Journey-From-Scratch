@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested FlexBox</title>
+    <style>
+        
+        .inbox-container{
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            padding: 10px 20px 10px 20px;
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .inbox-title{
+            margin:0;
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 14px;
+        }
+
+        .mail-card-container{
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+             margin-top: 10px;
+             margin-bottom: 20px;
+
+        }
+
+        .twitter-profile,
+        .profile-pic{
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .title-row{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+
+        .info-container{
+            flex: 1;
+        
+
+        }
+
+        .mail-title, 
+        .mail-subj{
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .mail-subj{
+            margin-bottom: 4px;
+        }
+        .mail-time, 
+        .mail-desc{
+            font-size: 12px;
+             color: rgba(0, 0, 0, 0.7);
+        }
+
+
+
+
+
+
+
+
+        .twitter-post-container{
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+
+        }
+
+        .twitter-username{
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .twitter-post-desc{
+            margin-bottom: 20px;
+        }
+    
+        .youtube-link-container{
+            display: flex;
+            width: 100%;
+            height: 100px; 
+            align-items: center;
+            border: solid 1px bisque;
+            border-radius: 20px;
+            column-gap: 14px;
+            padding-right: 20px;
+
+        }
+
+        .youtube-space-div{
+            width: 200px;
+            height: 100%;
+            background-color: bisque;
+             border-radius:  14px 0px 0px 14px ;
+            
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; flex-direction: row; height: 50px; margin-bottom: 20px; ">
+        <div style="width: 100px; background-color: antiquewhite; display: flex;flex-direction: row; align-items: center; justify-content: center;">
+
+            <div style="margin:0divx;background-color: black; color: white; ">Item1</div>
+
+        </div>
+        <div style="width: 200px; background-color: blueviolet;"></div>
+    </div>
+
+
+    <div style="display: flex; flex-direction: row; height: 50px; margin-bottom: 20px;">
+        <div style="background-color: antiquewhite; width: 100px;"></div>
+        <div style="background-color: lightblue; width: 200px; ">
+            <div>row 1</div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="background-color: black; color: white;">row 2</div>
+                <div  style="background-color: black; color: white;">row 2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="inbox-container">
+        <p class="inbox-title">ALL INBOXES</p>
+
+        <div class="mail-card-container">
+            <div class="profile-div">
+                <img class="profile-pic" src="image.png" alt="">
+            </div>
+            <div class="info-container">
+                <div class="title-row">
+                    <div class="mail-title">Chewy Promotions</div>
+                    <div class="mail-time">4:58 PM</div>
+                </div>
+                <div class="mail-subj">Biggest sales of the year!</div>
+                <div class="mail-desc">Hey there! We're writing to tell you about our...</div>
+            </div>
+        </div>
+        <div class="mail-card-container">
+            <div class="profile-div">
+                <img class="profile-pic" src="image.png" alt="">
+            </div>
+            <div class="info-container">
+                <div class="title-row">
+                    <div class="mail-title">Chewy Promotions</div>
+                    <div class="mail-time">4:58 PM</div>
+                </div>
+                <div class="mail-subj">Biggest sales of the year!</div>
+                <div class="mail-desc">Hey there! We're writing to tell you about our...</div>
+            </div>
+        </div>
+        <div class="mail-card-container">
+            <div class="profile-div">
+                <img class="profile-pic" src="image.png" alt="">
+            </div>
+            <div class="info-container">
+                <div class="title-row">
+                    <div class="mail-title">Chewy Promotions</div>
+                    <div class="mail-time">4:58 PM</div>
+                </div>
+                <div class="mail-subj">Biggest sales of the year!</div>
+                <div class="mail-desc">Hey there! We're writing to tell you about our...</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="twitter-post-container">
+        <div>
+            <img class="twitter-profile" src="image.png" alt="">
+        </div>
+        <div class="twitter-post-info-div">
+            <div class="twitter-username" >Supersimple.dev@SuperSimpleDev</div>
+            <div class="twitter-post-desc">What is backend web development? A complete overview. New video is up!</div>
+
+        <!-- Youtube -->
+            <div class="youtube-link-container">
+                <div class="youtube-space-div"></div>
+                <div>
+                    <div style="color: gray; font-size:14px; margin-bottom: 4px;">youtube.com</div>
+                    <div>Backend web development - a complete overview (2021)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
