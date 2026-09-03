@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position</title>
+
+    <style>
+        .discord-sidebar{
+            position: fixed;
+            top: 0;
+            bottom:0;
+            left: 0;
+            
+            display: flex;
+            flex-direction: row;
+        }
+
+        .column-1{
+            background-color: rgb(42, 41, 41);
+            padding: 20px;
+        }
+        .profile-pic-div{
+            margin-bottom: 10px;
+        }
+        .profile-pic-div img{
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .column-2{
+              background-color: rgb(72, 71, 71);
+            color: white;
+            padding: 20px;
+            width: 200px;
+        }
+
+        .info-title-div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .tag-text{
+color:  rgb(200, 199, 199);
+margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body style="height: 3000px; margin: 0; padding-top: 30px; padding-left: 50px;">
+    <!-- <div style="background-color: black; color: white; position: fixed; right: 10px;left:0px; right: 0px; top:0">
+        header
+    </div>
+
+    <div style="background-color:red; color: black; position: fixed; left: 0; bottom: 0;top:20px" >Sidebar</div>
+    <div style="width: 100px;height: 100px; background-color: aqua;">
+        div 1
+    </div>
+    <div style="width: 100px; height: 100px; background-color: antiquewhite;">
+        div 2
+    </div>
+ -->
+
+    <!--Discord sidebar-->
+    <div class="discord-sidebar">
+        <div class="column-1">
+            <div class="profile-pic-div">
+                <img src="image.png" alt="">
+            </div>
+            <div class="profile-pic-div">
+                <img src="image.png" alt="">
+            </div>
+            <div class="profile-pic-div">
+                <img src="image.png" alt="">
+            </div>
+        </div>
+        <div class="column-2">
+            <div class="info-title-div">
+                <div>INFO</div>
+                <div>+</div>
+            </div>
+            <div class="tag-text"># new-videos</div>
+            <div class="tag-text"># new-videos</div>
+            <div class="tag-text"># new-videos</div>
+           
+        </div>
+    </div>
+</body>
+</html>
