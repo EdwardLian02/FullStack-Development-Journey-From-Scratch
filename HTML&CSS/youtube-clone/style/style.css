@@ -1,7 +1,18 @@
 
 
 .thumbnail-section{
+    position: relative;
     margin-bottom: 12px;
+}
+
+.vd-duration{
+    position: absolute;
+    bottom: 10px;
+    right: 8px;
+    background-color: black;
+    color: white;
+    padding: 4px 5px;
+    font-size: 12px;
 }
 
 .vd-thumbnail{
