@@ -37,14 +37,18 @@
     row-gap: 20px;
 }
 
-.channel-profile{
-
+@media (max-width: 750px){
+  .video-grid{
+      grid-template-columns: 1fr 1fr;
+  }
 }
 
-.video-info{
-    
-
+@media (min-width: 1000px){
+  .video-grid{
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
+
 
 .channel-profile-img{
     width:  40px;
@@ -71,6 +75,9 @@
 .vd-state{
     margin-top: 4px;
 }
+
+
+
 
 
 
