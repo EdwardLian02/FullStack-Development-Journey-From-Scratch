@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Loops</title>
+</head>
+<body>
+    <h1>Javascript Loop</h1>
+    <h2>The for loop</h2>
+
+    <p id="demo"></p>
+</body>
+
+<script>
+
+    // const cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+    let text = "";
+
+    // for(let i = 0; i< cars.length; i++){
+    //     text += cars[i] + "<br>";
+    // }
+
+
+
+    // for (let i = 0; i < 1000000; i++){
+    //     text += `${i} <br>`;
+    // }
+
+
+    // document.getElementById("demo").innerHTML = text;
+
+    let numbers = [];
+
+    for (let i = 0; i < 1_000; i++) {
+        numbers.push(`${i}<br>`);
+    }
+
+    
+
+    document.getElementById("demo").innerHTML = numbers.join("");
+</script>
+</html>
