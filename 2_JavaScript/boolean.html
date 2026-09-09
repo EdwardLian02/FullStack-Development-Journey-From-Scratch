@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean</title>
+</head>
+
+<body>
+    <p>Rock, Paper, Scissors</p>
+    <button onclick="
+
+        const minNum = 1;
+        const maxNum = 3;
+
+        let rdmNum = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+        let computerMove = '';
+        if(rdmNum === 1){
+            computerMove = 'Rock';
+        } else if(rdmNum === 2) {
+            computerMove = 'Paper';
+        } else {
+            computerMove = 'Scissors';
+        }
+
+        let result = '';
+        if(computerMove === 'Rock'){
+            result = 'Tie';
+        } else if(computerMove === 'Paper'){
+            result = 'Lose';
+        } else{
+            result = 'Win';
+        }
+
+        alert(`You: Rock\nComputer: ${computerMove}\n ${result}`);
+
+    ">Rock</button>
+    <button onclick="
+     
+        const minNum = 1;
+        const maxNum = 3;
+
+        let rdmNum = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+        let computerMove = '';
+        if(rdmNum === 1){
+            computerMove = 'Rock';
+        } else if(rdmNum === 2) {
+            computerMove = 'Paper';
+        } else {
+            computerMove = 'Scissors';
+        }
+
+        let result = '';
+        if(computerMove === 'Rock'){
+            result = 'Win';
+        } else if(computerMove === 'Paper'){
+            result = 'Tie';
+        } else{
+            result = 'Lose';
+        }
+
+        alert(`You: Rock\nComputer: ${computerMove}\n ${result}`);
+    ">Paper</button>
+    <button>Scissors</button>
+</body>
+<script>
+    // console.log(typeof true);
+    // console.log(5 == '5.00');
+    // console.log(5 === '5.00');
+
+
+    // if(true){
+    //     console.log('hello, i just run');
+    // } else {
+    //     console.log('else');
+    // }
+
+
+    let age = 18;
+    let text = (age < 18) ? "Minor" : "Adult";
+    console.log(text);
+
+    let day = '';
+    switch (new Date().getDay()) {
+        case 0:
+            day = "Sunday";
+            console.log("run case 0")
+            break;
+
+        case 1:
+            day = "Monday";
+            console.log("run case 1")
+            break;
+        case 2:
+            day = "Tuesday";
+            console.log("run case 2")
+            break;
+        case 3:
+            day = "Wednesday";
+            console.log("run case 3")
+            break;
+        case 4:
+            day = "Thursday";
+            console.log("run case 4")
+            break;
+        case 3:
+            day = "Friday";
+            console.log("run case 5")
+            break;
+        case 6:
+            day = "Saturday";
+            console.log("run case 6")
+            break;
+
+        default:
+            day = "looking forward to the weekend";
+
+    }
+
+    console.log(day);
+
+
+</script>
+
+</html>
