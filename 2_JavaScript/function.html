@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+
+<body>
+    <!-- <button onclick="clickMe()">Click me</button> -->
+
+    <p>Rock, Paper, Scissors</p>
+    <button onclick="
+        playGame('Rock');
+    ">Rock</button>
+    <button onclick="
+     playGame('Paper');
+    ">Paper</button>
+    <button onclick="
+        playGame('Scissors')
+    ">Scissors</button>
+</body>
+<script>
+    // function clickMe(){
+    //     //Function body
+    //     console.log('Hey! You just clicked me.');
+    //     console.log(2+2);
+    // }
+
+
+
+    function pickComputerMove() {
+        const minNum = 1;
+        const maxNum = 3;
+        let computerMove = '';
+
+
+        let rdmNum = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+        computerMove = '';
+        if (rdmNum === 1) {
+            computerMove = 'Rock';
+        } else if (rdmNum === 2) {
+            computerMove = 'Paper';
+        } else {
+            computerMove = 'Scissors';
+        }
+
+        return computerMove
+    }
+
+    function playGame(playerMove) {
+        let computerMove = pickComputerMove();
+        let result = '';
+
+        if (playerMove == 'Rock') {
+            if (computerMove === 'Rock') {
+                result = 'Tie';
+            } else if (computerMove === 'Paper') {
+                result = 'Lose';
+            } else {
+                result = 'Win';
+            }
+        } else if (playerMove == 'Paper') {
+            if (computerMove === 'Rock') {
+                result = 'Win';
+            } else if (computerMove === 'Paper') {
+                result = 'Tie';
+            } else {
+                result = 'Lose';
+            }
+
+        } else if (playerMove == 'Scissors') {
+            if (computerMove === 'Rock') {
+                result = 'Lose';
+            } else if (computerMove === 'Paper') {
+                result = 'Win';
+            } else {
+                result = 'Tie';
+            }
+        } else {
+            return 'Invalid move';
+        }
+
+
+        alert(`You: Rock\nComputer: ${computerMove}\n ${result}`);
+    }
+
+    //parameter function 
+    // function calculateTax(cost , taxPercent=0.1){
+    //     return cost * taxPercent;
+    // }
+
+    // console.log(calculateTax(1000, 0.1));
+    // console.log(calculateTax(1000, 0.5));
+    // console.log(calculateTax(1000, 3));
+
+
+
+
+</script>
+
+</html>
