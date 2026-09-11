@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom practice</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffd6e7, #f9b8d2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        button {
+            border: 3px solid #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff8fba, #e96fa5);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(200, 80, 130, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(200, 80, 130, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button onclick="clickMe()">🦄 Meet Little Pony Girl 🎀</button> -->
+    <button class="js-first-button" onclick="clickMe()">Don't Click Me</button>
+    <button class="js-sec-button">Second Button</button>
+
+
+</body>
+<script>
+    // console.log(document.title);
+    // document.title = "Change";
+    document.querySelector('.js-first-button').innerHTML = "Js First button";
+   const domEle = document.querySelector('.js-sec-button').innerHTML = "Js Sec button";
+   console.log(domEle);
+    function clickMe() {
+        // document.body.innerHTML = `<img src="image.png" alt="">`;
+         document.querySelector('button').innerHTML = "Yo! You just clicked me";
+    }
+    /*
+    document.body.innerHTML = "THis is DOM";
+    document.title = "Good Job!";
+    */
+
+
+</script>
+
+</html>

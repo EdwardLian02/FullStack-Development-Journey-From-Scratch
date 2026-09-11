@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Little Pony</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffd6e7, #f9b8d2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        button {
+            border: 3px solid #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff8fba, #e96fa5);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(200, 80, 130, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(200, 80, 130, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        img{
+            height: 100vh;
+            width: 100vw;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="clickMe()">🦄 Meet Little Pony Girl 🎀</button>
+
+</body>
+<script>
+
+    function clickMe() {
+        document.body.innerHTML = `<img src="https://i.pinimg.com/736x/65/45/e5/6545e5653f8855daf5d490bdb1b4b4de.jpg" alt="">`;
+    }
+   
+
+</script>
+
+</html>

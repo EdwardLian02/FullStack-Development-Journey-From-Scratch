@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom practice project</title>
+</head>
+<body>
+    <p>Youtube Subscribe button</p>
+    <button class="js-sub-button" onclick="toggleSub()">
+        Subscribed
+    </button>
+
+
+    <br>
+    <br>
+    <br>
+
+    <p>Amazon Shipping Calculator</p>
+    <input id="cost-input" type="number" placeholder="Cost of order" onkeydown="handleCostKeydown(event)">
+    <button onclick="calculateCost()">Calculate</button>
+    <p class="js-result"></p>
+</body>
+<script>
+    console.log(window.console)
+
+    let subScribeButtonEl =  document.querySelector('.js-sub-button');
+    let subStatus = true;
+    function toggleSub(){
+        // console.log(subStatus);
+        // if(subStatus){
+        //     subScribeButtonEl.innerHTML = 'Unsubscribed';
+        // } else {
+        //     subScribeButtonEl.innerHTML = "Subscribed";
+        // }
+        // console.log(subScribeButtonEl);
+        // subStatus = !subStatus;
+
+        if(subScribeButtonEl.innerText === 'Subscribed'){
+            subScribeButtonEl.innerHTML = 'Unsubscribed'
+        } else {
+             subScribeButtonEl.innerHTML = 'Subscribed'
+        }
+    }
+
+
+    //
+
+    let resultDisplayEl = document.querySelector('.js-result');
+    let costInputEl = document.getElementById("cost-input");
+
+    function handleCostKeydown(event){
+        if(event.key === 'Enter') {
+            calculateCost();
+        }
+    }
+
+    function calculateCost(){
+      const inputCostValue =   parseInt(costInputEl.value);
+      console.log(typeof inputCostValue)
+      if(inputCostValue > 40) {
+        resultDisplayEl.innerHTML = `$${inputCostValue}`;
+      } else {
+         resultDisplayEl.innerHTML = `$${inputCostValue+10}`;
+      }
+      
+
+
+
+    }
+</script>
+</html>
