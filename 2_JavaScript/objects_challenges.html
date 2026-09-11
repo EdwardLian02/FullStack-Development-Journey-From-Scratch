@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Challenges</title>
+
+</head>
+<body>
+    <button onclick="playGame('head')">Head</button>
+    <button onclick="playGame('tail')">Tail</button>
+    <button onclick="reset()">Reset</button>
+</body>
+
+<script>
+
+    
+    let score = JSON.parse(localStorage.getItem('flipScore'))
+                || {
+                    win: 0, 
+                    lose: 0, 
+                    }
+
+
+    console.log(score);
+
+
+        
+
+    function playGame(guess){
+        let flipResult = flipCoin();
+
+        let result = guess === flipResult? 'win' : 'lose'; 
+        if(result == 'win'){
+            score.win += 1;
+        } else {
+            score.lose += 1;
+        }
+
+        keepScore(score);
+        alert(`
+        GUESS: ${guess}\n
+        FLIP RESULT: ${flipResult}\n
+        You ${result}\n
+        Win: ${score.win} | Lose: ${score.lose}
+        `) 
+    }
+
+    function flipCoin(){
+        let rdmNum = Math.random();
+   
+        console.log(rdmNum < 1/2? 'head' : 'tail');
+        return rdmNum < 1/2? 'head' : 'tail';
+
+    }
+
+
+    function keepScore(score){
+        localStorage.setItem('flipScore',JSON.stringify(score));
+    }
+
+    function reset(){
+        console.log('reset')
+        
+        localStorage.removeItem('flipScore');
+         score = JSON.parse(localStorage.getItem('flipScore'))
+                || {
+                    win: 0, 
+                    lose: 0, 
+                    }
+
+
+    }
+</script>
+</html>
