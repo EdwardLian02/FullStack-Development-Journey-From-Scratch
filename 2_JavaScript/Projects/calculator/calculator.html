@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="result" id="js-display"></div>
+      <div class="calculator-container">
+            <div onclick="formatEq('1')">1</div>
+            <div onclick="formatEq('2')">2</div>
+            <div  onclick="formatEq('3')">3</div>
+            <div  onclick="formatEq('+')" class="cal-button">+</div>
+            <div  onclick="formatEq('4')">4</div>
+            <div  onclick="formatEq('5')">5</div>
+            <div  onclick="formatEq('6')">6</div>
+            <div  onclick="formatEq('-')" class="cal-button">-</div>
+            <div  onclick="formatEq('7')">7</div>
+            <div  onclick="formatEq('8')">8</div>
+            <div  onclick="formatEq('9')">9</div>
+            <div  onclick="formatEq('*')" class="cal-button">x</div>
+            <div  onclick="formatEq('0')">0</div>
+            <div  onclick="formatEq('.')">.</div>
+            <div  onclick="calculate()" >=</div>
+            <div  onclick="formatEq('/')" class="cal-button">/</div>
+            <div  onclick="clearText()">Clear</div>
+      </div>  
+</body>
+<script src="script.js"></script>
+</html>

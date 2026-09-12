@@ -1,0 +1,37 @@
+body{
+    background-color: black;
+}
+.calculator-container{
+    display: grid;
+    grid-template-columns:  65px  65px  65px  65px;
+    row-gap: 12px;
+    column-gap: 10px;
+    align-items: center;
+}
+
+
+.calculator-container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+
+    background-color: rgb(202, 202, 202);
+    text-align: center;
+    height: 60px;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.calculator-container .cal-button{
+    background-color: rgb(246, 217, 142);
+}
+
+.result {
+    display: flex;
+    justify-content: start;
+    margin: 20px 0px;
+    color: white;
+    font-size: 24px;
+}

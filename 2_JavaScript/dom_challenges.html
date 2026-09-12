@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=q, initial-scale=1.0">
+    <title>DOM challenges</title>
+    <style>
+        button {
+            border-style: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .is-toggled {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- <button class="" id="js-button1-id" onclick="toggleButton('button1')">Gaming</button>
+        <button class="" id="js-button2-id" onclick="toggleButton('button2')">Music</button>
+        <button class="" id="js-button3-id" onclick="toggleButton('button3')">Tech</button> -->
+        <button class=""  onclick="toggleButton(this)">Gaming</button>
+        <button class=""  onclick="toggleButton(this)">Music</button>
+        <button class=""  onclick="toggleButton(this)">Tech</button>
+    </div>
+</body>
+<script>
+
+
+    function toggleButton(button){
+        document.querySelectorAll('button').forEach(btn => {
+            btn.classList.remove('is-toggled');
+        });
+
+        button.classList.add('is-toggled')
+    }
+    // let jsButton1El = document.getElementById('js-button1-id');
+    // let jsButton2El = document.getElementById('js-button2-id');
+    // let jsButton3El = document.getElementById('js-button3-id');
+
+
+    // function toggleButton(clickedButton) {
+    //     jsButton1El.classList.remove('is-toggled')
+    //         jsButton2El.classList.remove('is-toggled') 
+    //         jsButton3El.classList.remove('is-toggled')
+
+     
+
+    //     switch (clickedButton) {
+    //         case 'button1':
+    //             if (jsButton1El.classList.contains('is-toggled')) {
+    //                 jsButton1El.classList.remove('is-toggled');
+
+    //             } else {
+    //                 jsButton1El.classList.add('is-toggled');
+
+    //             }
+    //             break;
+    //         case 'button2': if (jsButton2El.classList.contains('is-toggled')) {
+    //             jsButton2El.classList.remove('is-toggled');
+
+    //         } else {
+    //             jsButton2El.classList.add('is-toggled');
+
+    //         }
+
+    //             break;
+    //         case 'button3': if (jsButton3El.classList.contains('is-toggled')) {
+    //             jsButton3El.classList.remove('is-toggled');
+    //         } else {
+    //             jsButton3El.classList.add('is-toggled');
+    //         }
+
+    //             break;
+            
+    //     }
+
+    // }
+</script>
+
+</html>
