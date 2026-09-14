@@ -8,6 +8,7 @@
 <body>
     <p>List Practice 1</p>
     <input type="text" id="todo-inputfield" placeholder="name">
+    <input type="date">
     <button onclick="addTodo()">Add</button>
     <div class="todo-display-container">
 
@@ -17,7 +18,7 @@
     const todos = [];
       const todoEl = document.getElementById('todo-inputfield');
       const todoDisplayEl = document.querySelector('.todo-display-container');
-      let todoDisplayString = "";
+      
     function addTodo(){
       
         const todo = todoEl.value;
@@ -32,10 +33,31 @@
         todoEl.value = "";
         
         
-        todoDisplayString += `<p>${todo}</p>`;
+      rendering();
 
         todoDisplayEl.innerHTML = todoDisplayString;
 
+    }
+
+
+    function rendering(){
+        let todoListHTML = "";
+        for(let i=0; i<todos.length; i++){
+            const html = `
+                <p>${todos[i]}</p>
+                <button onclick="deleteTodo(${i})">Delete</button>
+            `;
+
+            todoListHTML += html;
+        }
+
+        todoDisplayEl.innerHTML = todoListHTML;
+    }
+
+
+    function deleteTodo(index){
+        todos.splice(index, 1);
+        rendering();
     }
 
 

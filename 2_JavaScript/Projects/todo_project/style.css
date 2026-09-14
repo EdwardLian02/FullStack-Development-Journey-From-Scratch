@@ -1,0 +1,34 @@
+.todo-container{
+    margin-bottom: 10px;
+}
+.todo-container,
+.todo-display-container{
+    display:grid;
+    grid-template-columns: 200px 200px 200px;
+    column-gap: 30px;
+    row-gap: 12px;
+
+    align-items: center;
+}
+
+input{
+    width: 100%;
+    height: 30px;
+    padding: 6px
+}
+
+button{
+    height: 45px;
+    border-style: none;
+    width: 100px;
+    cursor: pointer;
+    color: white;
+}
+
+.add-button{
+    background-color: green;
+}
+
+.delete-button{
+    background-color: rgb(144, 20, 20);
+}
