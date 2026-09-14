@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Loop</title>
+</head>
+<body>
+    <p>List Practice 1</p>
+    <input type="text" id="todo-inputfield" placeholder="name">
+    <button onclick="addTodo()">Add</button>
+    <div class="todo-display-container">
+
+    </div>
+</body>
+<script>
+    const todos = [];
+      const todoEl = document.getElementById('todo-inputfield');
+      const todoDisplayEl = document.querySelector('.todo-display-container');
+      let todoDisplayString = "";
+    function addTodo(){
+      
+        const todo = todoEl.value;
+
+        if(!todo){
+            return;
+        }
+
+        todos.push(todo);
+        console.log( todos);
+ 
+        todoEl.value = "";
+        
+        
+        todoDisplayString += `<p>${todo}</p>`;
+
+        todoDisplayEl.innerHTML = todoDisplayString;
+
+    }
+
+
+
+
+
+    const nums = [10, 20, 30, 40, 50, 60]
+    console.log(nums);
+
+    console.log(nums[0])
+
+    console.log(nums.length);
+    console.log(Array.isArray(nums));
+
+    nums.splice(2, 2);
+    console.log(nums);
+
+     let total = 0;
+     for(let i= 0; i<nums.length; i++){
+        total += nums[i];
+     }
+     console.log(total);
+
+</script>
+</html>
