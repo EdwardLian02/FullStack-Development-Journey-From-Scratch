@@ -1,4 +1,4 @@
-let todos = [];
+let todos = JSON.parse(localStorage.getItem('todos')) || [] ;
 let todoDisplayEl = document.getElementById('todolist-display');
 
 document.getElementById('name-input').addEventListener('keydown', (event) => {
@@ -12,6 +12,10 @@ document.getElementById('name-input').addEventListener('keydown', (event) => {
         addTodo();
     }
 });
+
+rendering();
+
+
 function addTodo(){
     const nameInputEl = document.getElementById('name-input');
     const dateInputEl = document.getElementById('date-input');
@@ -28,17 +32,19 @@ function addTodo(){
         date: date,
     });
 
+    updateToLocalStorage();
+
     nameInputEl.value = '';
     dateInputEl.value = '';
 
     console.log(todos)
-
+    
     rendering();
 }
 
 
 function rendering(){
-    console.log('hi rendering' + todos)
+    
     let displayHTML = "";
     for (let i = 0; i < todos.length; i++) {
 
@@ -60,5 +66,13 @@ function rendering(){
 
 function deleteTodo(i){
     todos.splice(i, 1);
+    updateToLocalStorage();
     rendering();
+}
+
+
+
+function updateToLocalStorage(){
+    const jsonString = JSON.stringify(todos);
+    localStorage.setItem('todos', jsonString);
 }

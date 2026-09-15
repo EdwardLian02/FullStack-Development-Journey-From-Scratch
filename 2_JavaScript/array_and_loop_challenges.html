@@ -72,31 +72,86 @@
 
         // console.log(addArray([1,2,3,4,5], [1,2,3,4]))   
         
-// let obj = {
-//     'apple': 1
-// }
-//     console.log(Object.values(obj).includes('apple'))
-        
-        function countWords(array1){
+        // let obj = {
+        //     'apple': 1
+        // }
+        //     console.log(Object.values(obj).includes('apple'))
+                
+            //     function countWords(array1){
 
-            let wordCountObj = {};
-            for(let i =0; i<array1.length; i++){
-                // if(wordCountObj[array1[i]]){
-                if(Object.keys(wordCountObj).includes(array1[i])){
-                    wordCountObj[array1[i]] +=1;
-                    continue;
-                }
+            //         let wordCountObj = {};
+            //         for(let i =0; i<array1.length; i++){
+            //             // if(wordCountObj[array1[i]]){
+            //             if(Object.keys(wordCountObj).includes(array1[i])){
+            //                 wordCountObj[array1[i]] +=1;
+            //                 continue;
+            //             }
 
-                 wordCountObj[array1[i]] = 1;
+            //              wordCountObj[array1[i]] = 1;
 
 
 
-            }
+            //         }
 
-            return wordCountObj;
-        }
+            //         return wordCountObj;
+            //     }
 
-       console.log( countWords(['apple', 'orange', 'apple', 'orange', 'watermelon']))
+            //    console.log( countWords(['apple', 'orange', 'apple', 'orange', 'watermelon']))
+
+            ///////////////////////
+
+            // let array = ['search', 'apple', 'orange'];
+            // console.log(array.includes('search')? 0 : -1);
+
+            //////////////////////
+            //    let array = ['fsef', 'search', 'orange', 'search'];
+            // console.log(array.indexOf('search'));
+
+            ////////////////////
+            //FizzBuzzz
+            // function fizzbuzzgame(array){
+
+            //     let fizzbuzzResult = [];
+            //     array.forEach( n => {
+            //         if(n%3 ===0 && n%5 ===0){
+            //             fizzbuzzResult.push('FizzBuzz');
+            //         } else if(n%3 ===0){
+            //             fizzbuzzResult.push('Fizz');
+            //         } else if(n%5 ===0) {
+            //             fizzbuzzResult.push('Buzz');
+            //         } else {
+            //             fizzbuzzResult.push(n);
+            //         }
+            //     });
+
+            //     return fizzbuzzResult;
+            // }
+
+            // console.log(fizzbuzzgame([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]))
+
+
+            /////////////////////
+            // function noDuplicationFunc(arr){
+            //     let resultArr = [];
+            //     for (let i = 0; i < arr.length; i++) {
+                    
+            //         if(resultArr.includes(arr[i])){
+            //             continue;
+            //         }
+
+            //         resultArr.push(arr[i]);
+                    
+            //     }
+
+            //     return resultArr;
+            // }
+
+
+            // console.log(noDuplicationFunc(['apple' , 'orange', 'apple', 'banana', 'Dragon Fruit', 'banana', 'orange', 'orange', 'pineapple']))
+
+
+            
+
 
 </script>
 </html>
