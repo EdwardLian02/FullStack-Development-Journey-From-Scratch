@@ -23,11 +23,13 @@
     width: 55px;
 }
 
-.reset-button{
+.reset-button, 
+.auto-play-button{
     background-color: white;
     border-style: none;
     padding: 6px 12px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .js-result{

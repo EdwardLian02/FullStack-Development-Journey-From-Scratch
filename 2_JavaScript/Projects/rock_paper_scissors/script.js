@@ -1,11 +1,4 @@
 
-
-
-    
-
-
-    let cartQty = 0;
-
     let score = JSON.parse(localStorage.getItem('score')) ||{
             win: 0, 
             lose: 0, 
@@ -15,30 +8,31 @@
 
        //score display dom
         let scoreDisplayEl = document.querySelector('.js-score-display');
+        let autoPlayButtonEl = document.querySelector('.auto-play-button');
         let moveDisplayEl = document.querySelector('.js-move');
         let resultDisplayEl = document.querySelector('.js-result');
             updateScore();
-    function pickComputerMove() {
-        const minNum = 1;
-        const maxNum = 3;
-        let computerMove = '';
+        function pickComputerMove() {
+            const minNum = 1;
+            const maxNum = 3;
+            let computerMove = '';
 
 
-        let rdmNum = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
-        computerMove = '';
-        if (rdmNum === 1) {
-            computerMove = 'Rock';
-        } else if (rdmNum === 2) {
-            computerMove = 'Paper';
-        } else {
-            computerMove = 'Scissors';
-        }
+            let rdmNum = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+            computerMove = '';
+            if (rdmNum === 1) {
+                computerMove = 'Rock';
+            } else if (rdmNum === 2) {
+                computerMove = 'Paper';
+            } else {
+                computerMove = 'Scissors';
+            }
 
-        return computerMove
+            return computerMove;
     }
 
     function playGame(playerMove) {
-    
+        
         let computerMove = pickComputerMove();
         let result = '';
 
@@ -119,4 +113,19 @@
 
     }
 
+    let isAutoPlayOn = false;
+    let intervalId;
+    function autoPlay(){
+       
+        isAutoPlayOn = !isAutoPlayOn;
+        if(isAutoPlayOn){
+            autoPlayButtonEl.innerHTML = 'Stop'
+             intervalId = setInterval(() => playGame(pickComputerMove()), 1000);
+        } else {
+             autoPlayButtonEl.innerHTML = 'Auto Play'
+             clearInterval(intervalId);
+        }
+       
+       
+    }
 
