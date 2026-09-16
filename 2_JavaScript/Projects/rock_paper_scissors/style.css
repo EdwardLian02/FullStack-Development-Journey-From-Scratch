@@ -24,13 +24,23 @@
 }
 
 .reset-button, 
-.auto-play-button{
+.auto-play-button,
+.reset-confirmation-message-container button
+{
+
     background-color: white;
     border-style: none;
     padding: 6px 12px;
     font-size: 16px;
     cursor: pointer;
 }
+
+.reset-confirmation-message-container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
 
 .js-result{
     font-weight: bold;

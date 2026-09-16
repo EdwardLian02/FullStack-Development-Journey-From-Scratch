@@ -13,6 +13,9 @@ document.getElementById('name-input').addEventListener('keydown', (event) => {
     }
 });
 
+
+document.getElementById('js-add-button').addEventListener('click', () => addTodo());
+
 rendering();
 
 
@@ -46,23 +49,28 @@ function addTodo(){
 function rendering(){
     
     let displayHTML = "";
-    for (let i = 0; i < todos.length; i++) {
 
-        const html = `
-            <div>${todos[i].name}</div>
-            <div>${todos[i].date}</div>
-            <div><button class="delete-button" onclick="
-                deleteTodo(${i});
-            "
-            >Delete</button></div>
+    todos.forEach((todoObject, index) => {
+        
+        const {name, date} = todoObject;
+         const html = `
+            <div>${name}</div>
+            <div>${date}</div>
+            <div><button class="delete-button js-delete-button">Delete</button></div>
         `;
 
         displayHTML += html;
-        
-    }
+    });
+
 
     todoDisplayEl.innerHTML = displayHTML;
+
+
+    document.querySelectorAll('.js-delete-button').forEach((e, i)=> {
+        e.addEventListener('click', ()=> deleteTodo(i));
+    });
 }
+
 
 function deleteTodo(i){
     todos.splice(i, 1);

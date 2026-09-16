@@ -13,16 +13,9 @@
 <body>
     <p class="game-heading">Rock, Paper, Scissors</p>
     <div class="move-buttons-container">
-        <button class="move-button" onclick="
-        playGame('Rock');
-    "><img src="resources/rock.png" alt=""> </button>
-    <button class="move-button" onclick="
-     playGame('Paper');
-
-    "><img src="resources/paper.png" alt=""></button>
-    <button class="move-button" onclick="
-        playGame('Scissors')
-    "><img src="resources/scissors.png" alt=""></button>
+        <button class="move-button rock-button"><img src="resources/rock.png" alt=""> </button>
+    <button class="move-button paper-button"><img src="resources/paper.png" alt=""></button>
+    <button class="move-button scissors-button"><img src="resources/scissors.png" alt=""></button>
     </div>
     <p class="js-result"></p>
     <div class="js-move">
@@ -30,11 +23,9 @@
     </div>
     <p class="js-score-display" style="margin: 20px 0px;"></p>
     <button class="reset-button" onclick="resetScore()">Reset score</button>
-    <button class="auto-play-button" onclick="
-    
-    autoPlay()
-    ">Auto Play</button>
-
+    <button class="auto-play-button">Auto Play</button>
+    <div class="reset-confirmation-message-container" id="js-reset-message">
+     </div>
     <!--Script-->
     <script src="script.js"></script>
 </body>
