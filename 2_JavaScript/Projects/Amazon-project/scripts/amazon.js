@@ -5,6 +5,9 @@ let productGridEl = document.querySelector('.js-product-grid');
 
 let productGridHtml = "";
 
+//display cart qty at first load
+updateCartQty();
+
 products.forEach((product) => {
   productGridHtml += `
      <div class="product-container">

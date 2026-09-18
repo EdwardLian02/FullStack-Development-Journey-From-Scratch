@@ -1,10 +1,13 @@
-export const cart = [];
+export let cart = JSON.parse(localStorage.getItem('cart') ) ||  []
 
+export function saveToStorage() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 export function addToCart(productId){
 
     let product = cart.find(prod => prod.id === productId);
-  //get selected qty
+    //get selected qty
     const selectedQty = Number(document.querySelector(`.js-query-selector-${productId}`).value);
 
 
@@ -17,4 +20,17 @@ export function addToCart(productId){
         qty: selectedQty,
       })
     }
+
+    saveToStorage(cart);
+}
+
+
+export function removeFromCart(productid){
+    cart = cart.filter((cartItem) => cartItem.id !== productid);
+    saveToStorage(cart);
+}
+
+
+export function getCartQty (){
+    return 
 }

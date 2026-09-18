@@ -114,6 +114,33 @@
   font-weight: 700;
   margin-bottom: 5px;
 }
+.product-quantity .is-editing-quantity{
+  display:inline;
+}
+
+.is-hidden{
+  display:none;
+}
+
+
+.product-quantity{
+  display: flex;
+}
+
+.update-quantity-container{
+  display:none;
+}
+
+
+
+.update-quantity-input{
+  width: 30px;
+
+}
+
+.save-link{
+
+}
 
 .product-quantity .link-primary {
   margin-left: 3px;
