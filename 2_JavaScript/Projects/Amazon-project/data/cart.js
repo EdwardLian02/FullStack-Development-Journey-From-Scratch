@@ -1,19 +1,27 @@
 import { products } from "../data/products.js";
 import { formatPrice } from "../utils/money.js";
 
-export let cart = JSON.parse(localStorage.getItem('cart')) || []
+export let cart ;
+
+fetchFromLocalStorage();
+export function fetchFromLocalStorage(){
+  cart = JSON.parse(localStorage.getItem('cart')) || [
+    {
+      id: '15b6fc6f-327a-4ec4-896f-486349e85a3d', 
+      qty: 1, 
+      deliveryOptionId: '1'
+    }
+]
+}
 
 export function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export function addToCart(productId) {
+export function addToCart(productId, selectedQty = 1) {
 
   let product = cart.find(prod => prod.id === productId);
-  //get selected qty
-  const selectedQty = Number(document.querySelector(`.js-query-selector-${productId}`).value);
-
-
+ 
   //Added to cart
   if (product) {
     product.qty += selectedQty;
