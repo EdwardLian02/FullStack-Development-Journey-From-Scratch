@@ -1,4 +1,4 @@
-import { formatPrice } from "../utils/money.js";
+import { formatPrice } from "../../utils/money.js";
 
 describe('Suit: formatPrice', () =>{
     it("Convert cents into dollars", ()=>{
