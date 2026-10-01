@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
+  <div class="page">
+
+    <!-- ============================= HEADER ============================= -->
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__row">
+          <h1 class="header__title">Questionnaire</h1>
+          <!-- countLabel: update from JS, e.g. "2 questions" -->
+          <span class="header__count js-header-count" data-count-label>2 questions</span>
+        </div>
+
+        <!-- Tabs (toggle is wired at the bottom of this file) -->
+        <div class="tabs" role="tablist">
+          <button class="tab tab--active" role="tab" data-mode="teacher" aria-selected="true">Teacher</button>
+          <button class="tab" role="tab" data-mode="student" aria-selected="false">Student</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================= MAIN =============================== -->
+    <main class="main">
+
+      <!-- ========================================================= -->
+      <!-- TEACHER VIEW                                              -->
+      <!-- ========================================================= -->
+      <div data-view="teacher" class="stack" style="gap: 24px;">
+
+        <!-- ---------- Create / edit a question ---------- -->
+        <section class="card" id="js-create-question-card">
+          <div class="stack" style="gap: 4px;">
+            <!-- formTitle: "Create a Question" or "Edit Question" -->
+            <h2 data-form-title>Create a Question</h2>
+            <p style="font-size: 14px; color: var(--grey-600);">Write a question, add the choices, and mark the correct
+              one.</p>
+          </div>
+
+          <label class="field">
+            <span class="field__label">Question</span>
+            <textarea class="textarea" rows="2" placeholder="You should type your question here"
+              id="js-q-textarea"></textarea>
+          </label>
+
+          <div class="choices" id="js-choice-row-display">
+            <div class="choices__head">
+              <span class="label-row">Choices</span>
+              <span class="choices__hint">Select the correct answer</span>
+            </div>
+
+            <div class="choices" id="js-choices-row">
+              <div class="choice-row">
+                <span class="radio radio--checked" role="radio" aria-checked="true"><span
+                    class="radio__dot"></span></span>
+                <span class="choice-row__letter">A</span>
+                <input class="input" placeholder="Choice A">
+                <!-- Show the remove button only when there are more than 2 choices. -->
+                <button class="choice-remove" type="button" aria-label="Remove choice">&times;</button>
+              </div>
+            </div>
+
+
+            <!-- Hide when the max number of choices (6) is reached. -->
+            <div data-add-choice>
+              <button class="btn btn--tertiary btn--sm" type="button" id="js-add-choice-button">+ Add choice</button>
+            </div>
+          </div>
+
+          <!-- Validation message — reveal from JS. -->
+          <div class="error" data-error hidden>Please mark the correct answer.</div>
+
+          <div class="form-actions">
+            <!-- Cancel is shown only while editing an existing question. -->
+            <button class="btn btn--secondary" type="button" data-cancel-edit id="js-cancel-btn" hidden>Cancel</button>
+            <!-- saveLabel: "Add Question" or "Save Changes" -->
+            <button class="btn btn--primary" id="js-add-question-btn" type="button" data-save>Add Question</button>
+          </div>
+        </section>
+
+        <!-- ---------- Saved questions ---------- -->
+        <section class="section" id="js-q-card-section">
+          <h2 class="section__title">Your Questions</h2>
+
+          <!-- Empty state — reveal when there are no questions. -->
+          <div class="empty" data-teacher-empty hidden>No questions yet. Add your first one above.</div>
+
+          <!-- One .q-card per saved question. -->
+          <article class="q-card">
+            <div class="q-card__head">
+              <span class="q-card__num">Q1</span>
+              <p class="q-card__text">Which organ pumps blood around the body?</p>
+              <div class="q-card__actions">
+                <button class="btn btn--tertiary btn--sm" type="button">Edit</button>
+                <button class="btn btn--tertiary btn--sm" type="button" style="color: var(--red-700);">Delete</button>
+              </div>
+            </div>
+            <ul class="q-options">
+              <li class="q-option"><span class="q-option__letter">A</span><span class="q-option__text">Lungs</span></li>
+              <li class="q-option q-option--correct">
+                <span class="q-option__letter">B</span>
+                <span class="q-option__text">Heart</span>
+                <span class="q-option__mark">
+                  &#10003;Correct
+                </span>
+              </li>
+              <li class="q-option"><span class="q-option__letter">C</span><span class="q-option__text">Liver</span></li>
+              <li class="q-option"><span class="q-option__letter">D</span><span class="q-option__text">Kidneys</span>
+              </li>
+            </ul>
+          </article>
+
+        </section>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- STUDENT VIEW  (hidden until the Student tab is selected)  -->
+      <!-- ========================================================= -->
+      <div data-view="student" class="stack" style="gap: 24px;" hidden >
+
+        <!-- Empty state — reveal when the teacher has added no questions. -->
+        <div class="empty empty--tall" data-student-empty hidden>Your teacher hasn't added any questions yet.</div>
+
+        <!-- Result banner — reveal after the quiz is submitted. -->
+
+        <section class="result js-result-display" data-result hidden>
+        
+        </section>
+
+        <!-- One .quiz-card per question. -->
+        <div class="quiz-card-display-section stack" style="gap: 24px;">
+         
+
+        </div>
+
+
+        <!-- Sticky submit bar — hide once submitted. -->
+        <div class="submit-bar" data-submit-bar>
+          <span class="submit-bar__count js-submit-bar-count" data-answered-label>d</span>
+          <!-- disabled until every question is answered -->
+          <button class="btn btn--lg btn--primary js-answer-submit-btn" type="button" data-submit disabled>Submit Answers</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script/page-toggle.js"></script>
+  <script src="script/teacher-page.js" type="module"></script>
+  <script src="script/student-page.js" type="module"></script>
+</body>
+
+</html>

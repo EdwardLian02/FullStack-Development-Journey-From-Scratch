@@ -1,0 +1,439 @@
+/* ============================================================
+   Questionnaire — static styles
+   Ported from the CareMe design system (tokens + components).
+   NO behaviour lives here. Classes are visual hooks only; your
+   JavaScript should toggle classes / the [hidden] attribute.
+   ============================================================ */
+
+/* ---------- Design tokens (only the subset this page uses) ---------- */
+
+
+:root {
+  /* Brand */
+  --brand-50:  #EFF4FF;
+  --brand-600: #2563EB;
+  --brand-700: #1D58D8;
+  --brand-800: #1E4BAF;
+
+  /* Neutral greys */
+  --grey-00:  #FFFFFF;
+  --grey-50:  #F4F7FA;
+  --grey-100: #EEF2F6;
+  --grey-200: #E3E8EF;
+  --grey-300: #CDD5DF;
+  --grey-400: #9AA4B2;
+  --grey-500: #697586;
+  --grey-600: #4B5565;
+  --grey-700: #364152;
+  --grey-900: #121926;
+
+  /* Semantic */
+  --red-50:  #FFECEC;
+  --red-500: #FF4F4F;
+  --red-700: #B43030;
+  --green-50:  #E6F6F4;
+  --green-600: #00989D;
+  --green-700: #007867;
+
+  /* Radius */
+  --radius-xs:  6px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-pill: 9999px;
+
+  /* Elevation */
+  --shadow-card: 0 2px 8px rgba(18, 25, 38, 0.06);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+
+  /* Type */
+  --font-sans: "Euclid Circular A", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Thunder", "Euclid Circular A", -apple-system, sans-serif;
+}
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* The [hidden] attribute must always win over a class that sets display. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--grey-50);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--grey-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 { margin: 0; font-weight: 600; letter-spacing: -0.5px; }
+p { margin: 0; }
+
+a { color: var(--brand-600); text-decoration: none; }
+a:hover { color: var(--brand-700); }
+
+input::placeholder, textarea::placeholder { color: var(--grey-400); }
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--grey-200);
+}
+.header__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.header__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.header__title { font-size: 22px; }
+.header__count { font-size: 14px; color: var(--grey-600); }
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stack { display: flex; flex-direction: column; }
+.section { display: flex; flex-direction: column; gap: 12px; }
+.section__title { font-size: 18px; }
+
+/* ============================================================
+   Component: Tabs
+   ============================================================ */
+.tabs {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid var(--grey-200);
+}
+.tab {
+  position: relative;
+  padding: 12px 2px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--grey-500);
+  cursor: pointer;
+  transition: color var(--dur-fast);
+}
+.tab--active { font-weight: 600; color: var(--brand-600); }
+/* The active-state underline. */
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2.5px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+.tab--active::after { background: var(--brand-600); }
+
+/* ============================================================
+   Component: Button
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard),
+              filter var(--dur-fast);
+}
+.btn--sm { height: 40px; padding: 0 14px; font-size: 14px; }
+.btn--lg { height: 52px; padding: 0 22px; border-radius: var(--radius-lg); }
+
+.btn--primary   { background: var(--brand-600); color: #fff; }
+.btn--secondary { background: #fff; color: var(--grey-900); border-color: var(--grey-200); }
+.btn--tertiary  { background: transparent; color: var(--brand-600); }
+.btn--danger    { background: var(--red-500); color: #fff; }
+
+.btn:hover:not(:disabled) { filter: brightness(0.97); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ============================================================
+   Component: Radio (a styled span, not an <input>)
+   Add the .radio--checked class to fill it in.
+   ============================================================ */
+.radio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--grey-300);
+  cursor: pointer;
+  transition: box-shadow var(--dur-fast) var(--ease-standard);
+}
+.radio--checked { box-shadow: inset 0 0 0 7px var(--brand-600); }
+.radio--checked .radio__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+}
+
+/* ============================================================
+   Component: Badge
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.badge--sm { font-size: 11px; padding: 2px 7px; }
+.badge--success { background: var(--green-50); color: var(--green-700); }
+.badge--danger  { background: var(--red-50);   color: var(--red-700); }
+
+/* ============================================================
+   Cards & form pieces
+   ============================================================ */
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field__label { font-size: 14px; font-weight: 500; }
+
+.input,
+.textarea {
+  font: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--grey-100);
+  color: var(--grey-900);
+  outline: none;
+}
+.textarea { resize: vertical; }
+.input:focus,
+.textarea:focus { background: #fff; box-shadow: 0 0 0 1.5px var(--brand-600); }
+
+/* Choice editor row (teacher) */
+.choices
+ { display: flex; flex-direction: column; gap: 8px; }
+.choices__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.choices__hint { font-size: 12px; color: var(--grey-500); }
+.choice-row { display: flex; align-items: center; gap: 10px; }
+.choice-row__letter { width: 24px; font-size: 14px; font-weight: 600; color: var(--grey-500); }
+.choice-row .input { flex: 1; min-width: 0; }
+.choice-remove {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  color: var(--grey-500);
+  font-size: 20px;
+  cursor: pointer;
+}
+.choice-remove:hover { background: var(--grey-100); color: var(--red-700); }
+
+.error {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--red-50);
+  color: var(--red-700);
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.label-row { font-size: 14px; font-weight: 500; }
+
+/* Empty state */
+.empty {
+  padding: 32px 16px;
+  text-align: center;
+  border: 1px dashed var(--grey-300);
+  border-radius: var(--radius-lg);
+  color: var(--grey-600);
+  font-size: 14px;
+}
+.empty--tall { padding: 48px 16px; }
+
+/* ============================================================
+   Teacher — saved question card
+   ============================================================ */
+.q-card {
+  background: #fff;
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.q-card__head { display: flex; gap: 12px; align-items: flex-start; }
+.q-card__num { flex: none; font-size: 14px; font-weight: 600; color: var(--brand-600); }
+.q-card__text { flex: 1; font-size: 16px; font-weight: 500; text-wrap: pretty; }
+.q-card__actions { display: flex; gap: 4px; }
+
+.q-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.q-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  background: var(--grey-50);
+  color: var(--grey-700);
+}
+.q-option__letter { font-weight: 600; }
+.q-option__text { flex: 1; }
+.q-option__mark { font-size: 12px; font-weight: 500; }
+/* Correct-answer highlight — add this class in the teacher review list. */
+.q-option--correct { background: var(--green-50); color: var(--green-700); }
+
+/* ============================================================
+   Student — quiz card
+   ============================================================ */
+.quiz-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.quiz-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.quiz-card__step { font-size: 14px; font-weight: 600; color: var(--brand-600); }
+.quiz-card__question { font-size: 18px; font-weight: 500; letter-spacing: -0.3px; text-wrap: pretty; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background: var(--grey-50);
+  box-shadow: inset 0 0 0 1.5px transparent;
+  transition: background 150ms var(--ease-standard);
+}
+.answer__text { flex: 1; font-size: 16px; }
+.answer__tag { font-size: 12px; font-weight: 500; }
+
+/* Answer states — your JS applies these while taking / after grading. */
+.answer--selected { background: var(--brand-50); box-shadow: inset 0 0 0 1.5px var(--brand-600); }
+.answer--correct  { background: var(--green-50); box-shadow: inset 0 0 0 1.5px var(--green-600); }
+.answer--correct .answer__tag { color: var(--green-700); }
+.answer--wrong    { background: var(--red-50);   box-shadow: inset 0 0 0 1.5px var(--red-500); }
+.answer--wrong .answer__tag { color: var(--red-700); }
+.answer--locked { cursor: default; }
+
+/* Result banner */
+.result {
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  background: linear-gradient(135deg, var(--brand-600), var(--brand-800));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.result__label { font-size: 14px; opacity: 0.9; }
+.result__score {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 0.9;
+  letter-spacing: 1px;
+}
+.result__message { font-size: 16px; }
+
+/* Sticky submit bar */
+.submit-bar {
+  position: sticky;
+  bottom: 0;
+  padding: 12px 0;
+  background: rgba(244, 247, 250, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.submit-bar__count { font-size: 14px; color: var(--grey-600); }
