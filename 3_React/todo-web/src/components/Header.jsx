@@ -1,4 +1,3 @@
-// Presentational: receives the numbers, renders the hero. No state of its own.
 export function Header({ total = 0, completed = 0 }) {
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',

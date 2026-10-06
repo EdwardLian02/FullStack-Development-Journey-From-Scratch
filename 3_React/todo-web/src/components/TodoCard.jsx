@@ -1,4 +1,4 @@
-// One task row. `todo` is { id, text, done }. Static — buttons are visual only.
+
 export function TodoCard({ todo, onRemove, onMarkDone}) {
   return (
 

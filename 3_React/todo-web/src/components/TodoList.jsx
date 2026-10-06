@@ -1,6 +1,5 @@
 import { TodoCard } from './TodoCard'
 
-// Pure list renderer. Shows an empty state when there's nothing.
 export function TodoList({ todos = [], onRemove, currentTab, onMarkDone }) {
 
 
@@ -17,7 +16,9 @@ export function TodoList({ todos = [], onRemove, currentTab, onMarkDone }) {
         return todos;
     }
   }
-  if (todos.length === 0) {
+
+
+  if (getTodosByTab(todos, currentTab).length === 0) {
     return (
       <div className="todo-empty">
         <strong>All clear</strong>

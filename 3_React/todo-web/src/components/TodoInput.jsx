@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-// Static input bar — no state, no submit handling. Just the look of it.
 export function TodoInput({onAddTodo}) {
 
   const [text, setText] = useState("");

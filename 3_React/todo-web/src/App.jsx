@@ -3,38 +3,32 @@ import { Header } from './components/Header'
 import { Tabs } from './components/Tabs'
 import { TodoList } from './components/TodoList'
 import { TodoInput } from './components/TodoInput'
-import { useState } from 'react'
-import { useEffect } from 'react'
-
-// Static mock data — this is just here so the UI has something to show.
-// No state, no handlers: everything below is presentational only.
-const TODOS = JSON.parse(localStorage.getItem('todos')) || [];
-
-const COUNTS = {
-  all: TODOS.length,
-  active: TODOS.filter((t) => !t.done).length,
-  done: TODOS.filter((t) => t.done).length,
-}
-
+import { useState, useEffect } from 'react'
 
 function App() {
-  const [todos, setTodos] = useState(TODOS);
-  const [currentTab, setCurrentTab] = useState("all");
-  const [counts, setCounts] = useState(COUNTS);
+  //reads localStorage once, on first render only.
+  const [todos, setTodos] = useState(() =>
+    JSON.parse(localStorage.getItem('todos')) || []
+  );
 
-  useEffect(() => {
-  setCounts({
+  const [currentTab, setCurrentTab] = useState("all");
+
+
+  //Setting up count everytime it renders
+    const counts = {
       all: todos.length,
       active: todos.filter((t) => !t.done).length,
       done: todos.filter((t) => t.done).length,
-    } )
+    }
+
+  //Store and sync in local storage
+  useEffect(() => {
     storeInLocal(todos);
   }, [todos]);
 
   function storeInLocal(todos){
     const jsonString = JSON.stringify(todos);
     localStorage.setItem('todos', jsonString);
-    console.log('set to storage');
   }
   
 
