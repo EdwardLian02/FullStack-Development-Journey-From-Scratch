@@ -6,7 +6,12 @@ const TABS = [
 
 // Static: `active` just decides which tab gets the highlighted style.
 // No click handling — purely a visual.
-export function Tabs({ active = 'all', counts = {} }) {
+export function Tabs({ active = 'all', counts = {}, setCurrentTab}) {
+
+
+  function handleOnTabChange(newState){
+    setCurrentTab(newState);
+  }
   return (
     <nav className="tabs" aria-label="Filter tasks">
       {TABS.map((tab) => (
@@ -14,6 +19,9 @@ export function Tabs({ active = 'all', counts = {} }) {
           key={tab.key}
           className={active === tab.key ? 'tab is-active' : 'tab'}
           type="button"
+          onClick={() => {
+           handleOnTabChange(tab.key)
+          }}
         >
           {tab.label}
           <span className="tab-count">{counts[tab.key] ?? 0}</span>

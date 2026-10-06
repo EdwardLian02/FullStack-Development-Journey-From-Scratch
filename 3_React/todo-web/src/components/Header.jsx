@@ -13,13 +13,15 @@ export function Header({ total = 0, completed = 0 }) {
       <h1 className="app-title">Today</h1>
 
       <p className="progress-label">
-        {total === 0 ? (
-          'No tasks yet'
-        ) : (
-          <>
-            <strong>{completed}</strong> of {total} done
-          </>
-        )}
+        {
+          total === 0 ? (
+            'No tasks yet'
+          ) : (
+            <>
+              <strong>{completed}</strong> of {total} done
+            </>
+          )
+        }
       </p>
       <div
         className="progress-track"
