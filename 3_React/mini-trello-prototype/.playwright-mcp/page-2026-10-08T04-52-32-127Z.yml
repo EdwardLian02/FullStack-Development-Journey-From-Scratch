@@ -1,0 +1,158 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]: Personal board
+          - heading "Kanban Board" [level=1] [ref=e8]
+        - button "+ Add Task" [ref=e9] [cursor=pointer]:
+          - generic [ref=e10]: +
+          - text: Add Task
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]: ⌕
+          - textbox "Search title or description…" [ref=e14]
+        - generic [ref=e15]:
+          - text: Priority
+          - combobox "Priority" [ref=e16] [cursor=pointer]:
+            - option "All" [selected]
+            - option "Low"
+            - option "Medium"
+            - option "High"
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e21]: Todo
+          - generic [ref=e22]: "2"
+        - generic [ref=e23]:
+          - generic [ref=e24]: High
+          - generic [ref=e26]: Learn JavaScript closures
+          - generic [ref=e27]: Finish the scope & closures chapter
+          - generic [ref=e28]:
+            - button "‹" [disabled] [ref=e29]
+            - button "›" [ref=e30] [cursor=pointer]
+            - combobox "Move to" [ref=e31] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e32] [cursor=pointer]
+            - button "Delete" [ref=e33] [cursor=pointer]
+        - generic [ref=e34]:
+          - generic [ref=e35]: Low
+          - generic [ref=e37]: Practice array methods
+          - generic [ref=e38]: map, filter, reduce exercises
+          - generic [ref=e39]:
+            - button "‹" [disabled] [ref=e40]
+            - button "›" [ref=e41] [cursor=pointer]
+            - combobox "Move to" [ref=e42] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e43] [cursor=pointer]
+            - button "Delete" [ref=e44] [cursor=pointer]
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e48]: Doing
+          - generic [ref=e49]: "2"
+        - generic [ref=e50]:
+          - generic [ref=e51]: High
+          - generic [ref=e53]: Build React project
+          - generic [ref=e54]: Kanban board with localStorage
+          - generic [ref=e55]:
+            - button "‹" [ref=e56] [cursor=pointer]
+            - button "›" [ref=e57] [cursor=pointer]
+            - combobox "Move to" [ref=e58] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e59] [cursor=pointer]
+            - button "Delete" [ref=e60] [cursor=pointer]
+        - generic [ref=e61]:
+          - generic [ref=e62]: Medium
+          - generic [ref=e64]: React Router basics
+          - generic [ref=e65]: Routes, links and navigation
+          - generic [ref=e66]:
+            - button "‹" [ref=e67] [cursor=pointer]
+            - button "›" [ref=e68] [cursor=pointer]
+            - combobox "Move to" [ref=e69] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e70] [cursor=pointer]
+            - button "Delete" [ref=e71] [cursor=pointer]
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - generic [ref=e75]: Done
+          - generic [ref=e76]: "2"
+        - generic [ref=e77]:
+          - generic [ref=e78]: Low
+          - generic [ref=e80]: Learn HTML
+          - generic [ref=e81]:
+            - button "‹" [ref=e82] [cursor=pointer]
+            - button "›" [disabled] [ref=e83]
+            - combobox "Move to" [ref=e84] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e85] [cursor=pointer]
+            - button "Delete" [ref=e86] [cursor=pointer]
+        - generic [ref=e87]:
+          - generic [ref=e88]: Medium
+          - generic [ref=e90]: CSS flexbox & grid
+          - generic [ref=e91]: Layout practice
+          - generic [ref=e92]:
+            - button "‹" [ref=e93] [cursor=pointer]
+            - button "›" [disabled] [ref=e94]
+            - combobox "Move to" [ref=e95] [cursor=pointer]:
+              - option "Move to…" [selected]
+              - option "Todo"
+              - option "Doing"
+              - option "Done"
+            - button "Edit" [ref=e96] [cursor=pointer]
+            - button "Delete" [ref=e97] [cursor=pointer]
+  - generic [ref=e98]: AAdd / Edit task modal
+  - generic [ref=e101]:
+    - generic [ref=e102]: New task
+    - generic [ref=e103]:
+      - text: Title
+      - textbox "Title" [ref=e104]:
+        - /placeholder: e.g. Learn React Router
+    - generic [ref=e105]:
+      - text: Description
+      - generic [ref=e106]: optional
+      - textbox "Description optional" [ref=e107]
+    - generic [ref=e108]:
+      - text: Priority
+      - generic [ref=e109]:
+        - button "Low" [ref=e110] [cursor=pointer]
+        - button "Medium" [ref=e112] [cursor=pointer]
+        - button "High" [ref=e114] [cursor=pointer]
+    - generic [ref=e116]:
+      - button "Cancel" [ref=e117] [cursor=pointer]
+      - button "Create Task" [ref=e118] [cursor=pointer]
+  - generic [ref=e119]:
+    - generic [ref=e120]:
+      - generic [ref=e121]: BDelete confirmation
+      - generic [ref=e124]:
+        - generic [ref=e125]: Are you sure you want to delete “Learn HTML”? This can't be undone.
+        - generic [ref=e126]:
+          - button "Cancel" [ref=e127] [cursor=pointer]
+          - button "Delete" [ref=e128] [cursor=pointer]
+    - generic [ref=e129]:
+      - generic [ref=e130]: CEmpty board
+      - generic [ref=e132]:
+        - generic [ref=e133]: Your board is empty.
+        - generic [ref=e134]: Create your first task to get started.
+        - button "+ Add Task" [ref=e135] [cursor=pointer]:
+          - generic [ref=e136]: +
+          - text: Add Task
+    - generic [ref=e137]:
+      - generic [ref=e138]: DNo search results
+      - generic [ref=e140]:
+        - generic [ref=e141]: No tasks found.
+        - generic [ref=e142]: Try another search or filter.

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanban Board — Paper theme (static UI)</title>
+
+<!-- Fonts used by the "paper" theme: Instrument Serif for headings, DM Sans for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS — "paper" theme
+     These mirror the THEMES.paper object from the original design.
+     When you rebuild this in React, these map 1:1 to a theme object
+     or to CSS variables you keep in index.css.
+     ============================================================ */
+  :root {
+    /* surfaces & text */
+    --bg:         #f6f1e9;  /* board background          */
+    --panel:      #efe8dc;  /* column background         */
+    --card:       #fffdf9;  /* task card / inputs        */
+    --ink:        #2b2622;  /* primary text              */
+    --mute:       #8a8176;  /* secondary / muted text    */
+    --line:       #e3dacb;  /* borders & dividers        */
+
+    /* brand / actions */
+    --accent:     #b4532f;  /* primary button            */
+    --accent-ink: #fffdf9;  /* text on accent            */
+    --danger:     #b3392b;  /* delete / destructive      */
+
+    /* radii */
+    --r:     10px;  /* standard (buttons, cards, inputs) */
+    --rs:     7px;  /* small (icon buttons)              */
+    --rl:    16px;  /* large (columns, modals)           */
+    --shell: 14px;  /* outer board frame                 */
+
+    --shadow: 0 1px 2px rgba(60,40,20,.06);
+
+    /* type */
+    --head: 'Instrument Serif', serif;
+    --body: 'DM Sans', sans-serif;
+
+    /* priority accent colors */
+    --prio-low:      #6f8f5e;
+    --prio-medium:   #c28a2b;
+    --prio-high:     #b4532f;
+    /* priority soft backgrounds (used by the modal's selected chip tint) */
+    --prio-low-bg:    #e8eedf;
+    --prio-medium-bg: #f5e8cc;
+    --prio-high-bg:   #f3dcd1;
+
+    /* column dot colors */
+    --col-todo:  #c9bda8;
+    --col-doing: #c28a2b;
+    --col-done:  #6f8f5e;
+  }
+
+  /* ---- page shell (from "Kanban App" wrapper) ---- */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #ebe5da;
+    color: var(--ink);
+    font-family: var(--body);
+  }
+  a { color: var(--accent); }
+  a:hover { color: #8a3d20; }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(6px) scale(.98); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ============================================================
+     BOARD FRAME
+     ============================================================ */
+  .board {
+    position: relative;
+    overflow: hidden;
+    min-height: 760px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--shell);
+  }
+
+  /* ---- header ---- */
+  .board__head {
+    padding: 28px 32px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .head__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 6px;
+  }
+  .title {
+    margin: 0;
+    font-family: var(--head);
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -.01em;
+  }
+
+  /* ---- buttons ---- */
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 0;
+    border-radius: var(--r);
+    padding: 11px 18px;
+    font: 600 14px var(--body);
+    cursor: pointer;
+  }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-primary .plus { font-size: 18px; line-height: 1; }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: var(--r);
+    padding: 7px 12px;
+    font: 500 13px var(--body);
+    cursor: pointer;
+  }
+  .btn-ghost:hover { background: var(--card); }
+
+  /* ---- toolbar: search + priority filter ---- */
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .search {
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 0 14px;
+  }
+  .search__icon { color: var(--mute); font-size: 15px; }
+  .search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 400 14px var(--body);
+    padding: 12px 0;
+  }
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 0 12px;
+    font-size: 13px;
+    color: var(--mute);
+  }
+  .filter select {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 500 14px var(--body);
+    padding: 12px 0;
+    cursor: pointer;
+  }
+
+  /* ============================================================
+     COLUMNS
+     ============================================================ */
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 0 32px 32px;
+    align-items: start;
+  }
+  .column {
+    background: var(--panel);
+    border: 1px solid transparent;
+    border-radius: var(--rl);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 120px;
+    transition: background .15s;
+  }
+  .column__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 4px 6px;
+  }
+  .column__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .column__label {
+    font: 600 12px var(--body);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .column__count {
+    margin-left: auto;
+    font: 500 12px var(--body);
+    color: var(--mute);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 2px 9px;
+  }
+  /* column accent dots */
+  .dot-todo  { background: var(--col-todo); }
+  .dot-doing { background: var(--col-doing); }
+  .dot-done  { background: var(--col-done); }
+
+  /* ---- task card ---- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-top: 1px solid var(--line); /* paper theme: no colored top edge */
+    border-radius: var(--r);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: grab;
+    box-shadow: var(--shadow);
+    animation: pop .25s ease;
+  }
+  .card__prio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font: 600 11px var(--body);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .card__prio .pdot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .prio-low    { color: var(--prio-low); }
+  .prio-medium { color: var(--prio-medium); }
+  .prio-high   { color: var(--prio-high); }
+
+  .card__title { font: 600 15px/1.3 var(--body); }
+  .card__desc  { font-size: 13px; line-height: 1.45; color: var(--mute); }
+
+  .card__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+  }
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--rs);
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .icon-btn:hover:not([disabled]) { background: var(--bg); }
+  .icon-btn[disabled] { opacity: .35; cursor: default; }
+
+  .move-select {
+    height: 28px;
+    border-radius: var(--rs);
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--mute);
+    font: 500 12px var(--body);
+    padding: 0 4px;
+    cursor: pointer;
+    max-width: 92px;
+  }
+  .spacer { flex: 1; }
+  .link-btn {
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 500 12px var(--body);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+  }
+  .link-btn:hover { background: var(--bg); }
+  .link-btn--danger { color: var(--danger); }
+
+  /* ============================================================
+     ALTERNATE STATES (empty board / no results / modals)
+     Shown below as separate labeled previews.
+     ============================================================ */
+  .state-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .preview {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--shell);
+    min-height: 320px;
+  }
+  .preview__label {
+    font: 600 13px var(--body);
+    color: #555;
+    margin: 32px 0 10px;
+  }
+  .preview__label span {
+    background: #2b2622;
+    color: #fff;
+    border-radius: 6px;
+    padding: 3px 8px;
+    margin-right: 8px;
+  }
+
+  .empty-state {
+    margin: 40px 32px;
+    padding: 64px 24px;
+    text-align: center;
+    border: 1px dashed var(--line);
+    border-radius: var(--rl);
+  }
+  .empty-state__title {
+    font-family: var(--head);
+    font-weight: 400;
+    font-size: 28px;
+  }
+  .empty-state__sub {
+    color: var(--mute);
+    margin: 8px 0 20px;
+    font-size: 14px;
+  }
+  .no-results { padding: 56px 24px; }
+  .no-results .empty-state__title { font-size: 26px; }
+  .no-results .empty-state__sub { margin: 8px 0 0; }
+
+  /* ---- modal backdrop (contained inside .preview for the demo) ---- */
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,18,16,.4);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 70px 16px;
+  }
+  .backdrop--confirm { padding: 90px 16px; }
+
+  .modal {
+    width: 100%;
+    max-width: 440px;
+    background: var(--card);
+    border-radius: var(--rl);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    animation: pop .2s ease;
+  }
+  .modal__title {
+    font-family: var(--head);
+    font-weight: 400;
+    font-size: 26px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font: 500 13px var(--body);
+  }
+  .field .optional { color: var(--mute); font-weight: 400; }
+  .field input,
+  .field textarea {
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: var(--bg);
+    color: var(--ink);
+    padding: 11px 12px;
+    font: 400 14px var(--body);
+    outline: 0;
+  }
+  .field textarea { resize: vertical; }
+
+  .prio-picker {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .prio-opt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px;
+    border-radius: var(--r);
+    border: 1.5px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font: 500 13px var(--body);
+    cursor: pointer;
+  }
+  .prio-opt .pdot { width: 8px; height: 8px; border-radius: 50%; }
+  .prio-opt--active { border-color: var(--accent); background: var(--bg); }
+
+  .modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .btn-secondary {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    border-radius: var(--r);
+    padding: 10px 16px;
+    font: 500 14px var(--body);
+    cursor: pointer;
+  }
+  .btn-submit {
+    border: 0;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: var(--r);
+    padding: 10px 16px;
+    font: 600 14px var(--body);
+    cursor: pointer;
+  }
+
+  .confirm {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border-radius: var(--rl);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    animation: pop .2s ease;
+  }
+  .confirm__text { font-size: 15px; line-height: 1.5; }
+  .confirm__actions { display: flex; justify-content: flex-end; gap: 8px; }
+  .btn-delete {
+    border: 0;
+    background: var(--danger);
+    color: #fff;
+    border-radius: var(--r);
+    padding: 10px 16px;
+    font: 600 14px var(--body);
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- =========================================================
+       MAIN BOARD  (default populated state — uses the design's SEED data)
+       Future React: <KanbanBoard /> wrapping <Column /> → <TaskCard />
+       ========================================================= -->
+  <div class="board">
+
+    <div class="board__head">
+      <div class="head__top">
+        <div>
+          <div class="eyebrow">Personal board</div>
+          <h1 class="title">Kanban Board</h1>
+        </div>
+        <button class="btn-primary"><span class="plus">+</span>Add Task</button>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <span class="search__icon">⌕</span>
+          <input type="text" placeholder="Search title or description…">
+        </div>
+        <label class="filter">Priority
+          <select>
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="columns">
+
+      <!-- ---------- TODO ---------- -->
+      <div class="column">
+        <div class="column__head">
+          <span class="column__dot dot-todo"></span>
+          <span class="column__label">Todo</span>
+          <span class="column__count">2</span>
+        </div>
+
+        <!-- task: high priority -->
+        <div class="card">
+          <div class="card__prio prio-high"><span class="pdot"></span>High</div>
+          <div class="card__title">Learn JavaScript closures</div>
+          <div class="card__desc">Finish the scope &amp; closures chapter</div>
+          <div class="card__actions">
+            <button class="icon-btn" disabled title="Move back">‹</button>
+            <button class="icon-btn" title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+
+        <!-- task: low priority -->
+        <div class="card">
+          <div class="card__prio prio-low"><span class="pdot"></span>Low</div>
+          <div class="card__title">Practice array methods</div>
+          <div class="card__desc">map, filter, reduce exercises</div>
+          <div class="card__actions">
+            <button class="icon-btn" disabled title="Move back">‹</button>
+            <button class="icon-btn" title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- DOING ---------- -->
+      <div class="column">
+        <div class="column__head">
+          <span class="column__dot dot-doing"></span>
+          <span class="column__label">Doing</span>
+          <span class="column__count">2</span>
+        </div>
+
+        <div class="card">
+          <div class="card__prio prio-high"><span class="pdot"></span>High</div>
+          <div class="card__title">Build React project</div>
+          <div class="card__desc">Kanban board with localStorage</div>
+          <div class="card__actions">
+            <button class="icon-btn" title="Move back">‹</button>
+            <button class="icon-btn" title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__prio prio-medium"><span class="pdot"></span>Medium</div>
+          <div class="card__title">React Router basics</div>
+          <div class="card__desc">Routes, links and navigation</div>
+          <div class="card__actions">
+            <button class="icon-btn" title="Move back">‹</button>
+            <button class="icon-btn" title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- DONE ---------- -->
+      <div class="column">
+        <div class="column__head">
+          <span class="column__dot dot-done"></span>
+          <span class="column__label">Done</span>
+          <span class="column__count">2</span>
+        </div>
+
+        <!-- task with no description -->
+        <div class="card">
+          <div class="card__prio prio-low"><span class="pdot"></span>Low</div>
+          <div class="card__title">Learn HTML</div>
+          <div class="card__actions">
+            <button class="icon-btn" title="Move back">‹</button>
+            <button class="icon-btn" disabled title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__prio prio-medium"><span class="pdot"></span>Medium</div>
+          <div class="card__title">CSS flexbox &amp; grid</div>
+          <div class="card__desc">Layout practice</div>
+          <div class="card__actions">
+            <button class="icon-btn" title="Move back">‹</button>
+            <button class="icon-btn" disabled title="Move forward">›</button>
+            <select class="move-select" title="Move to">
+              <option value="">Move to…</option>
+              <option value="todo">Todo</option>
+              <option value="doing">Doing</option>
+              <option value="done">Done</option>
+            </select>
+            <span class="spacer"></span>
+            <button class="link-btn">Edit</button>
+            <button class="link-btn link-btn--danger">Delete</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       OTHER UI STATES — rendered as standalone previews so you can
+       see every piece of the design without wiring interactivity.
+       ========================================================= -->
+
+  <div class="preview__label"><span>A</span>Add / Edit task modal</div>
+  <div class="preview" style="min-height:520px">
+    <div class="backdrop">
+      <form class="modal" onsubmit="return false">
+        <div class="modal__title">New task</div>
+
+        <label class="field">Title
+          <input type="text" placeholder="e.g. Learn React Router">
+        </label>
+
+        <label class="field">Description <span class="optional">optional</span>
+          <textarea rows="3"></textarea>
+        </label>
+
+        <div class="field">Priority
+          <div class="prio-picker">
+            <button type="button" class="prio-opt">
+              <span class="pdot" style="background:var(--prio-low)"></span>Low
+            </button>
+            <button type="button" class="prio-opt prio-opt--active">
+              <span class="pdot" style="background:var(--prio-medium)"></span>Medium
+            </button>
+            <button type="button" class="prio-opt">
+              <span class="pdot" style="background:var(--prio-high)"></span>High
+            </button>
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button type="button" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-submit">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="state-grid">
+
+    <div>
+      <div class="preview__label"><span>B</span>Delete confirmation</div>
+      <div class="preview" style="min-height:300px">
+        <div class="backdrop backdrop--confirm">
+          <div class="confirm">
+            <div class="confirm__text">
+              Are you sure you want to delete <b>“Learn HTML”</b>? This can't be undone.
+            </div>
+            <div class="confirm__actions">
+              <button class="btn-secondary">Cancel</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview__label"><span>C</span>Empty board</div>
+      <div class="preview">
+        <div class="empty-state">
+          <div class="empty-state__title">Your board is empty.</div>
+          <div class="empty-state__sub">Create your first task to get started.</div>
+          <button class="btn-primary" style="display:inline-flex"><span class="plus">+</span>Add Task</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview__label"><span>D</span>No search results</div>
+      <div class="preview">
+        <div class="empty-state no-results">
+          <div class="empty-state__title">No tasks found.</div>
+          <div class="empty-state__sub">Try another search or filter.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
