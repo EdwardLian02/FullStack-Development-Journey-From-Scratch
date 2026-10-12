@@ -1,178 +1,142 @@
+import { useRef, useState } from "react";
+import StatusColumn from "./components/StatusColumn";
+import AddNewTaskForm from "./components/AddNewTaskForm";
+
+const DEMO_TASK = [
+  {
+    id: 1,
+    title: "Learn React",
+    description: "Practice useState and props",
+    priority: "low",
+    status: "todo",
+  },
+  {
+    id: 2,
+    title: "Build Todo App",
+    description: "Create the board UI",
+    priority: "medium",
+    status: "doing",
+  },
+  {
+    id: 3,
+    title: "Learn JavaScript",
+    description: "Finish array methods",
+    priority: "high",
+    status: "done",
+  },
+  {
+    id: 4,
+    title: "Build React project",
+    description: "Kanban board with local storage",
+    priority: "low",
+    status: "todo",
+  },
+  {
+    id: 5,
+    title: "Practice array methods",
+    description: "map, filter, reduce exercises",
+    priority: "medium",
+    status: "doing",
+  },
+  {
+    id: 6,
+    title: "React Router Basic",
+    description: "Routes, links and navigation",
+    priority: "high",
+    status: "doing",
+  },
+];
+
 
 function App() {
+  console.log("I am rendering")
+  const [tasks, setTasks] = useState(DEMO_TASK);
+  const [isAddTask, setIsAddTask] = useState(false);
+  const columnRefs = useRef({});
+
+  function registerColumnRef(status, el) {
+    console.log(status);
+    console.log(el);
+    columnRefs.current[status] = el;
+  }
+
+  function getTasksByStatus(status) {
+    return tasks.filter((task) => task.status === status);
+  }
+
+
+  const todoTasks = getTasksByStatus('todo')
+  const doingTasks = getTasksByStatus('doing');
+  const doneTasks = getTasksByStatus('done');
+
+
+  function addTask(newTask){
+      if(!newTask) return;
+      setTasks((preTasks) => [...preTasks, newTask]);
+      setIsAddTask(false)
+  }
+
+  function deleteTask(delTask){
+      const updateTasks = tasks.filter((task) => task.id !== delTask.id);
+      setTasks((prev) => prev = updateTasks);
+  }
+
+  function changeStatus(task, newStatus){
+      const updateTasks = tasks.map((t) => t.id === task.id? {...task, status: newStatus}: t);
+      setTasks((prev) => prev = updateTasks);
+  }
+
   return (
-    <div class="board">
-    <div class="board__head">
-      <div class="head__top">
-        <div>
-          <div class="eyebrow">Personal board</div>
-          <h1 class="title">Kanban Board</h1>
-        </div>
-        <button class="btn-primary"><span class="plus">+</span>Add Task</button>
-      </div>
+    <>
+      <div className="board">
+        <div className="board__head">
+          <div className="head__top">
+            <div>
+              <div className="eyebrow">Personal board</div>
+              <h1 className="title">Kanban Board</h1>
+            </div>
+            <button className="btn-primary" onClick={() => setIsAddTask((prev) => prev = !prev)}><span className="plus">+</span>Add Task</button>
+          </div>
 
-      <div class="toolbar">
-        <div class="search">
-          <span class="search__icon">⌕</span>
-          <input type="text" placeholder="Search title or description…"/>
-        </div>
-        <label class="filter">Priority
-          <select>
-            <option value="all">All</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-        </label>
-      </div>
-    </div>
-
-    <div class="columns">
-
-
-      <div class="column">
-        <div class="column__head">
-          <span class="column__dot dot-todo"></span>
-          <span class="column__label">Todo</span>
-          <span class="column__count">2</span>
-        </div>
-
-
-        <div class="card">
-          <div class="card__prio prio-high"><span class="pdot"></span>High</div>
-          <div class="card__title">Learn JavaScript closures</div>
-          <div class="card__desc">Finish the scope &amp; closures chapter</div>
-          <div class="card__actions">
-            <button class="icon-btn" disabled title="Move back">‹</button>
-            <button class="icon-btn" title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
+          <div className="toolbar">
+            <div className="search">
+              <span className="search__icon">⌕</span>
+              <input type="text" placeholder="Search title or description…" />
+            </div>
+            <label className="filter">Priority
+              <select>
+                <option value="all">All</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card__prio prio-low"><span class="pdot"></span>Low</div>
-          <div class="card__title">Practice array methods</div>
-          <div class="card__desc">map, filter, reduce exercises</div>
-          <div class="card__actions">
-            <button class="icon-btn" disabled title="Move back">‹</button>
-            <button class="icon-btn" title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
-          </div>
+        <div className="columns">
+
+          <StatusColumn status='todo' tasks={todoTasks} onDelete={deleteTask} changeStatus={changeStatus} columnRefs={columnRefs} onColumnRef={registerColumnRef}/>
+          <StatusColumn status='doing' tasks={doingTasks} onDelete={deleteTask} changeStatus={changeStatus} columnRefs={columnRefs} onColumnRef={registerColumnRef}/>
+          <StatusColumn status='done' tasks={doneTasks} onDelete={deleteTask} changeStatus={changeStatus} columnRefs={columnRefs} onColumnRef={registerColumnRef}/>
+
         </div>
       </div>
 
-
-      <div class="column">
-        <div class="column__head">
-          <span class="column__dot dot-doing"></span>
-          <span class="column__label">Doing</span>
-          <span class="column__count">2</span>
-        </div>
-
-        <div class="card">
-          <div class="card__prio prio-high"><span class="pdot"></span>High</div>
-          <div class="card__title">Build React project</div>
-          <div class="card__desc">Kanban board with localStorage</div>
-          <div class="card__actions">
-            <button class="icon-btn" title="Move back">‹</button>
-            <button class="icon-btn" title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card__prio prio-medium"><span class="pdot"></span>Medium</div>
-          <div class="card__title">React Router basics</div>
-          <div class="card__desc">Routes, links and navigation</div>
-          <div class="card__actions">
-            <button class="icon-btn" title="Move back">‹</button>
-            <button class="icon-btn" title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
-          </div>
-        </div>
-      </div>
+      {
+        isAddTask ?
+          <AddNewTaskForm onSubmit={addTask} onCancel={()=>{setIsAddTask(false)}}/> :
+          null
+      } 
 
 
-      <div class="column">
-        <div class="column__head">
-          <span class="column__dot dot-done"></span>
-          <span class="column__label">Done</span>
-          <span class="column__count">2</span>
-        </div>
+
+    </>
 
 
-        <div class="card">
-          <div class="card__prio prio-low"><span class="pdot"></span>Low</div>
-          <div class="card__title">Learn HTML</div>
-          <div class="card__actions">
-            <button class="icon-btn" title="Move back">‹</button>
-            <button class="icon-btn" disabled title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
-          </div>
-        </div>
 
-        <div class="card">
-          <div class="card__prio prio-medium"><span class="pdot"></span>Medium</div>
-          <div class="card__title">CSS flexbox &amp; grid</div>
-          <div class="card__desc">Layout practice</div>
-          <div class="card__actions">
-            <button class="icon-btn" title="Move back">‹</button>
-            <button class="icon-btn" disabled title="Move forward">›</button>
-            <select class="move-select" title="Move to">
-              <option value="">Move to…</option>
-              <option value="todo">Todo</option>
-              <option value="doing">Doing</option>
-              <option value="done">Done</option>
-            </select>
-            <span class="spacer"></span>
-            <button class="link-btn">Edit</button>
-            <button class="link-btn link-btn--danger">Delete</button>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
+
   )
 }
 

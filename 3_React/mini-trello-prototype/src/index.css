@@ -49,9 +49,10 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: #ebe5da;
+    background: var(--bg);
     color: var(--ink);
     font-family: var(--body);
+
   }
   a { color: var(--accent); }
   a:hover { color: #8a3d20; }
@@ -74,7 +75,6 @@
     position: relative;
     overflow: hidden;
     min-height: 760px;
-    background: var(--bg);
     border: 1px solid var(--line);
     border-radius: var(--shell);
   }
@@ -249,6 +249,11 @@
     box-shadow: var(--shadow);
     animation: pop .25s ease;
   }
+  .card--dragging {
+    cursor: grabbing;
+    box-shadow: 0 12px 24px rgba(60,40,20,.18);
+    z-index: 10;
+  }
   .card__prio {
     display: flex;
     align-items: center;
@@ -368,13 +373,16 @@
 
   /* ---- modal backdrop (contained inside .preview for the demo) ---- */
   .backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(20,18,16,.4);
     display: flex;
-    align-items: flex-start;
+    z-index: 100;
+    align-items: center;
     justify-content: center;
-    padding: 70px 16px;
+    height:auto;
+
+
   }
   .backdrop--confirm { padding: 90px 16px; }
 
