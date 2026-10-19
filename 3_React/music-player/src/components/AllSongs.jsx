@@ -1,13 +1,14 @@
-import useMusic from "../hooks/useMusic";
+import { useContext } from "react";
+import { MusicContext } from "../hooks/MusicContext";
 
 export const AllSongs = () => {
 
-    const [
+    const {
         songs,
         handleChangeSong,
         currentSong,
         currentSongIndex
-     ] = useMusic();
+     } = useContext(MusicContext);
 
     return (
         <div className="all-songs">
@@ -16,7 +17,7 @@ export const AllSongs = () => {
                {
                 songs.map((song, key) => (
                      <div key={key} className={`song-card ${song.id === currentSong.id? 'active': ''} `} onClick={() =>handleChangeSong(song, key)}>
-                        <div className="song-info">
+                        <div className="song-i nfo">
                             <h3 className="song-title">{song.title} </h3>
                             <p className="song-artist">{song.artist} </p>
                             <span className="song-duration"> {song.duration}</span>
