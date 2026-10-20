@@ -9,8 +9,6 @@ function App() {
   return (
     <BrowserRouter>
       <MusicProvider>
-
-
         <div className="app">
           <Navbar />
           <main className="app-main">
