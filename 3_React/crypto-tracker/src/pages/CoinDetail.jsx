@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import {
   CartesianGrid,
@@ -8,26 +9,99 @@ import {
   Line,
   Tooltip,
 } from "recharts";
+import { fetchChartData, fetchCoinData } from "../api/coinGecko";
+import { formatPrice } from "../util/formatter";
 
 
 
-
-const chartData = [
-  { time: "Oct 14", price: 62000 },
-  { time: "Oct 15", price: 63500 },
-  { time: "Oct 16", price: 62800 },
-  { time: "Oct 17", price: 65100 },
-  { time: "Oct 18", price: 64300 },
-  { time: "Oct 19", price: 66800 },
-  { time: "Oct 20", price: 67450 },
-];
-
- const CoinDetail = () => {
+const CoinDetail = () => {
 
   const navigate = useNavigate();
-  const param = useParams();
-  
+  const { id } = useParams();
+
+  const [coinData, setCoinData] = useState(null);
+  const [chartData, setChartData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+  const handleFetchingCoinData = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetchCoinData(id);
+      setCoinData(response);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  const handleFetchingChartData = async () => {
+    try {
+      const response = await fetchChartData(id);
+      const formattedData = response.prices.map((price) => (
+        {
+          'time': new Date(price[0]).toLocaleDateString('en-US', {
+            month: "short",
+            day: "numeric",
+          }
+          ),
+          'price': price[1].toFixed(2)
+        }
+      ))
+
+      setChartData(formattedData);
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    handleFetchingCoinData();
+    handleFetchingChartData();
+  }, [id])
+
+  if (isLoading) {
+    return (
+      <div className="app">
+        <div className="loading">
+          <div className="spinner"></div>
+          <p>Loading coin data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!CoinDetail) {
+    return (
+      <div className="app">
+        <div className="no-results">
+          <p>Coin not found</p>
+          <button onClick={() => navigate("/")}>Go Back</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="app">
+      <div className="no-results">
+        <p>Error Found while fetching coin data: {error}</p>
+        <button onClick={() => navigate("/")}>Go Back</button>
+      </div>
+    </div>
+  }
+
+  const priceChange = coinData.market_data.price_change_percentage_24h || 0;
+  const isPositive = priceChange >= 0;
   return (
+
     <div className="app">
       <header className="header">
         <div className="header-content">
@@ -48,8 +122,8 @@ const chartData = [
               alt="Bitcoin"
             />
             <div>
-              <h1>Bitcoin</h1>
-              <p className="symbol">BTC</p>
+              <h1>{coinData.name} </h1>
+              <p className="symbol">{coinData.symbol} </p>
             </div>
           </div>
 
@@ -58,19 +132,23 @@ const chartData = [
 
         <div className="coin-price-section">
           <div className="current-price">
-            <h2>$67,450.00</h2>
-            <span className="change-badge positive">↑ 2.45%</span>
+            <h2>{formatPrice(coinData.market_data.current_price.usd)} </h2>
+            <span
+              className={`change-badge ${isPositive ? "positive" : "negative"}`}
+            >
+              {isPositive ? "↑" : "↓"} {Math.abs(priceChange).toFixed(2)}%
+            </span>
           </div>
 
           <div className="price-ranges">
             <div className="price-range">
               <span className="range-label">24h High</span>
-              <span className="range-value">$68,200.00</span>
+              <span className="range-value"> {formatPrice(coinData.market_data.high_24h.usd)}</span>
             </div>
 
             <div className="price-range">
               <span className="range-label">24h Low</span>
-              <span className="range-value">$65,900.00</span>
+              <span className="range-value"> {formatPrice(coinData.market_data.low_24h.usd)}</span>
             </div>
           </div>
         </div>

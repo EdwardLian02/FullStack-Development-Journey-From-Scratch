@@ -1,3 +1,5 @@
+// https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false
+// https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7
 const BASE_URL = "https://api.coingecko.com/api/v3";
 
 export const fetchCryptos = async () =>  {

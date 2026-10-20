@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { formatMarketCap, formatPrice } from "../util/formatter";
+import { useNavigate } from "react-router";
 
 export const CryptoCard = ({crypto}) => {
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(crypto.image)
   }, [])
   return (
-    <div className="crypto-card">
+    <div className="crypto-card" onClick={() => navigate(`/coin/${crypto.id}`)}>
       <div className="crypto-header">
         <div className="crypto-info">
           <img src={crypto.image} alt="Bitcoin" />
