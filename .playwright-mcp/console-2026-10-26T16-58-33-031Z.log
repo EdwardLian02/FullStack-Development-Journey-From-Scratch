@@ -1,0 +1,141 @@
+[     192ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[     401ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[     437ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[     471ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[     528ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[     528ms] [LOG] value  MAYEDITED @ http://localhost:5199/src/PersonList.tsx:28
+[     528ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[    1819ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   32787ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   32839ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   32871ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   32905ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   32950ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   32950ms] [LOG] value  MAYEDITED @ http://localhost:5199/src/PersonList.tsx:28
+[   32950ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   54005ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   54057ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   54087ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   54119ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   54571ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   54571ms] [LOG] value  MAYEDITED @ http://localhost:5199/src/PersonList.tsx:28
+[   54571ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   76598ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   76649ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   76688ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   76721ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   77185ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   77185ms] [LOG] value  A1 @ http://localhost:5199/src/PersonList.tsx:28
+[   77185ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   78435ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   78435ms] [LOG] value  C3 @ http://localhost:5199/src/PersonList.tsx:28
+[   78435ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   79275ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   79313ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   79345ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   79379ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   79832ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   79832ms] [LOG] value  TYPEDNOTSAVED @ http://localhost:5199/src/PersonList.tsx:28
+[   79832ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   81884ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   81925ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   81958ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   81992ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   83271ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   83313ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   83346ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   83379ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   83837ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   83837ms] [LOG] value  ENTERED @ http://localhost:5199/src/PersonList.tsx:28
+[   83837ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[   84669ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[   84713ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   84746ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   84779ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[   86233ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[   86233ms] [LOG] value  B_ONLY @ http://localhost:5199/src/PersonList.tsx:28
+[   86233ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[  116981ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[  117025ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  117058ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  117091ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  117484ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[  117484ms] [LOG] value  A_TYPED @ http://localhost:5199/src/PersonList.tsx:28
+[  117484ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[  118902ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[  118950ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  118983ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  119016ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  119396ms] [LOG] name  firstName @ http://localhost:5199/src/PersonList.tsx:27
+[  119396ms] [LOG] value  A_TYPED @ http://localhost:5199/src/PersonList.tsx:28
+[  119396ms] [LOG] type  text @ http://localhost:5199/src/PersonList.tsx:29
+[  151023ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=80591044:15801
+[  151071ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  151103ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  152915ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5199/@vite/client:1089
+[  168966ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  176005ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  176055ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  176086ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  176598ms] [LOG] name  isMarried @ http://localhost:5199/src/PersonList.tsx:27
+[  176598ms] [LOG] value  on @ http://localhost:5199/src/PersonList.tsx:28
+[  176598ms] [LOG] type  radio @ http://localhost:5199/src/PersonList.tsx:29
+[  177823ms] [LOG] name  isMarried @ http://localhost:5199/src/PersonList.tsx:27
+[  177823ms] [LOG] value  on @ http://localhost:5199/src/PersonList.tsx:28
+[  177823ms] [LOG] type  radio @ http://localhost:5199/src/PersonList.tsx:29
+[  185731ms] [ERROR] WebSocket connection to 'ws://localhost:5199/?token=V_Grcpe4fu4l' failed:  @ http://localhost:5199/@vite/client:958
+[  185732ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5199/@vite/client:1089
+[  254799ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  264774ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  264838ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  264873ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  264906ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  265533ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  265575ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  265632ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  265663ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  308160ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  308206ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  308239ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  327690ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  327791ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  327826ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  327859ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  328378ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  328427ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  328459ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  328493ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  329473ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  329519ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  329552ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  329593ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  331207ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  331260ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  331292ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  331326ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  332322ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  332363ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  332397ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  332431ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375139ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  375211ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375255ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375288ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375797ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  375842ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375876ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  375909ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  376904ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  376955ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  376988ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  377021ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  378652ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  378697ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  378730ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  378763ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  379765ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/react-dom_client.js?v=e3b243b4:15801
+[  379813ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  379846ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  379880ms] [LOG] validationErrors {} @ http://localhost:5199/src/PersonalInfoForm.tsx:46
+[  387302ms] [ERROR] WebSocket connection to 'ws://localhost:5199/?token=9pkmwzg25j1V' failed:  @ http://localhost:5199/@vite/client:958
+[  387303ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5199/@vite/client:1089
