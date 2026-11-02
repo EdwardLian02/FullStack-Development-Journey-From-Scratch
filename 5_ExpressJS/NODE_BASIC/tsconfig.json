@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* Target & Environment */
+    "target": "es2023",                          /* Node 20+ supports this fully; no need to down-level. */
+    "lib": ["es2023"],                           /* No "dom": this is a Node backend, not a browser app. */
+    "types": ["node"],                           /* TS 6+ no longer auto-loads @types/*; opt in explicitly. */
+    "module": "NodeNext",                        /* Follow Node's rules; format comes from package.json "type". */
+    "moduleResolution": "NodeNext",              /* Accurate lookups for Node's resolution algorithm. */
+    "moduleDetection": "force",                  /* Treat every file as a module (no accidental global scope). */
+
+    /* Strictness & Safety */
+    "strict": true,                              /* Enable all strict type-checking options. */
+    "noUncheckedIndexedAccess": true,            /* array[i] / obj[key] include 'undefined'. */
+    "noImplicitOverride": true,                  /* Derived classes must use the 'override' keyword. */
+    "noImplicitReturns": true,                   /* Every code path in a function must return a value. */
+
+    /* Code Quality & Analysis */
+    "noUnusedLocals": true,                      /* Error on unused local variables. */
+    "noUnusedParameters": true,                  /* Error on unused params (prefix with _ to ignore, e.g. _req). */
+    "noFallthroughCasesInSwitch": true,          /* Prevent accidental fall-through in switch statements. */
+    "allowUnreachableCode": false,               /* Error on code that can never be executed. */
+
+    /* Module & Interop */
+    "esModuleInterop": true,                     /* Allows `import express from "express"` for CommonJS packages. */
+    "resolveJsonModule": true,                   /* Allow importing .json files directly. */
+    "isolatedModules": true,                     /* Each file must be compilable alone (required by tsx/esbuild). */
+    "skipLibCheck": true,                        /* Skip type checking of .d.ts files for speed. */
+
+    /* Build Output (used by `tsc`; `tsx` for dev ignores these) */
+    "rootDir": "src",                            /* Keeps dist/ layout identical to src/. */
+    "outDir": "dist",                            /* Compiled JS goes here. */
+    "sourceMap": true,                           /* Stack traces point at your .ts files. */
+    "noEmitOnError": true                        /* Don't emit JS if there are type errors. */
+  },
+  "include": ["src/**/*"],                       /* Only compile code inside the source directory. */
+  "exclude": ["node_modules", "dist"]            /* Explicitly exclude build outputs and dependencies. */
+}
