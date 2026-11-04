@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "express": "^5.3.0",
     "tailwindcss": "^4.3.3"
   }
 }

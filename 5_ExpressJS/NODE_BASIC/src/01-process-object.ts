@@ -44,4 +44,25 @@ const command = process.argv[2] ?? "start";
 //Fail flag
 //Crash flag
 
+const shouldFail = process.argv.includes("--fail");
+const shouldCrash = process.argv.includes("--crash")
 
+
+//do not start async here
+//node is already shutting down
+//final log, final cleanup
+
+process.on("exit", (code) => {
+    console.log(`process finished with exit code ${code}`);
+})
+
+function runApp(): void {
+    console.log({command,});
+
+    if(shouldFail){
+        console.error("Manual crash triggered with --fail flag")
+    }
+    if(shouldCrash){
+        console.error("Manual crash triggered with --crash flag")
+    }
+}

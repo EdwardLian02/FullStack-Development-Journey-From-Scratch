@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "dev": "tsx watch src/index.ts", 
-    "migration": "", 
-    "unit": "", 
-    "e2e": ""
+    "build": "tsc",
+    "01": "tsx src/01-process-object.ts",
+    "02": "tsx src/02-crypto-module.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +16,9 @@
     "@types/node": "^26.6.6",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "esbuild": "^0.28.2",
+    "undici-types": "^8.9.0"
   }
 }
