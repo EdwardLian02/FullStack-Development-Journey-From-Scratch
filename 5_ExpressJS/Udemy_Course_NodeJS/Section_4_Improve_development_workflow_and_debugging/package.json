@@ -1,0 +1,17 @@
+{
+  "name": "section_4_improve_development_workflow_and_debugging",
+  "version": "1.0.0",
+  "description": "Complete Node.js Guide",
+  "license": "ISC",
+  "author": "YeXing",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
