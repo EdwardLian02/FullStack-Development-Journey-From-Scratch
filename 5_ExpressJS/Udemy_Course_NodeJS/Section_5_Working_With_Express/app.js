@@ -1,11 +1,67 @@
-const http = require('http')
+//import section
+const express = require('express')
+const path = require('path')
+const rootDir = require('./util/path')
+const adminRoutes = require('./routes/admin')
+const shopRoutes = require('./routes/shop')
+
+const app = express();
+
+//Middleware section
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')))
 
 
-const server = http.createServer()
+app.use('/admin',adminRoutes) //only routes start with "/admin"
+app.use( shopRoutes) //only routes start with "/shop"
 
-server.listen(3000, (req, res) => {
+app.use((req,res,next) => {
+    console.log(rootDir)
+    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'))
+})
+
+app.listen(3000, (req, res) => {
     console.log("Server is hosting at http://localhost:3000")
 })
+
+
+
+// //First middleware
+// app.use((req, res, next) => {
+//     if(req.url === '/' && req.method === "GET"){
+//         console.log("This is in middleware")
+//     }else {
+//         res.send("<h1>Hi slash</h1>")
+//     }
+//     next();
+// })
+
+//Second middleware
+// app.use((req, res, next) => {
+//     console.log("This is another middleware")
+//     // res.send("<h1>Hello</h1>")
+//     res.json({name: "Hi"})
+// })
+
+// app.use('/', (req,res, next) => {
+//     console.log("This always run");
+//     next();
+// })
+
+// app.use('/add-product', (req,res, next) => {
+//     console.log("This is /add-product");
+//     res.send(`<h1>URL: add-product</h1>`)
+
+// })
+// app.use('/', (req,res, next) => {
+//     console.log("This is /");
+//     res.send(`<h1>URL: ${req.url}</h1>`)
+// })
+
+
+
+
 
 
 
