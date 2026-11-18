@@ -81,12 +81,12 @@ Bookmark_Manager/
 
 ## 4. Core requirements checklist
 
-- [ ] `npm init` a fresh project here, install `express` (and `nodemon` as a dev dependency)
-- [ ] `util/path.js` that resolves the project root the same way your Section 5 one does
-- [ ] One `express.Router()` for the bookmark routes, mounted in `app.js`
-- [ ] `express.static` serving a `public/css` folder
-- [ ] `express.urlencoded({ extended: true })` registered **before** your routes
-- [ ] Home page (`/`) renders all current bookmarks from the in-memory array, with title,
+- [x] `npm init` a fresh project here, install `express` (and `nodemon` as a dev dependency)
+- [x] `util/path.js` that resolves the project root the same way your Section 5 one does
+- [x] One `express.Router()` for the bookmark routes, mounted in `app.js`
+- [x] `express.static` serving a `public/css` folder
+- [x] `express.urlencoded({ extended: true })` registered **before** your routes
+- [x] Home page (`/`) renders all current bookmarks from the in-memory array, with title,
       category, and a clickable link (`<a href="...">`) for each one
 - [ ] If there are zero bookmarks, show a friendly "nothing saved yet" message instead of an
       empty list

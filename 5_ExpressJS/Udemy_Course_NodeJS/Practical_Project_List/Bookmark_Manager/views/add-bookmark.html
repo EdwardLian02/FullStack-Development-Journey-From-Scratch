@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a bookmark · Bookmarks</title>
+  <link rel="stylesheet" href="/css/general.css" />
+  <link rel="stylesheet" href="/css/add-bookmark.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Bookmarks</span>
+        <span class="brand__sub">your saved links</span>
+      </a>
+      <a class="btn btn--ghost" href="/">Back to all</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="form-head">
+      <h1>Save a new bookmark</h1>
+      <p>Keep a link somewhere you'll actually find it again. Give it a title and a category so it lands in the right place.</p>
+    </div>
+
+    <!--
+      This form POSTs to /bookmarks (your route handler reads req.body).
+      The `name` attributes are what you'll read on the server:
+      req.body.title, req.body.url, req.body.category, req.body.notes
+    -->
+    <form class="panel" action="/book/add-bookmark" method="POST">
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="MDN Web Docs" required />
+      </div>
+
+      <div class="field">
+        <label for="url">URL</label>
+        <input type="url" id="url" name="url" placeholder="https://developer.mozilla.org" required />
+        <p class="hint">Include the full address, starting with https://</p>
+      </div>
+
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Choose a category</option>
+          <option value="Tech">Tech</option>
+          <option value="Design">Design</option>
+          <option value="Reading">Reading</option>
+          <option value="Tools">Tools</option>
+          <option value="Personal">Personal</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes <span class="opt">(optional)</span></label>
+        <textarea id="notes" name="notes" placeholder="Why is this worth keeping?"></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn--primary">Save bookmark</button>
+        <a class="btn btn--ghost" href="/">Cancel</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Bookmark Manager — a Section 5 Express practice project.</div>
+  </footer>
+</body>
+</html>

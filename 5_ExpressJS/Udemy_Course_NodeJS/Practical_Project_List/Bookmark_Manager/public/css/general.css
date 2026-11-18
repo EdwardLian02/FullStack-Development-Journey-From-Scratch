@@ -1,0 +1,156 @@
+/* ============================================================
+   general.css  —  shared design tokens + layout for every page
+   Served statically from /public via express.static.
+   Link it with:  <link rel="stylesheet" href="/css/general.css">
+   ============================================================ */
+
+:root {
+  /* Colour — a "quiet library desk" palette.
+     Navy is the working/interactive colour; amber is the one accent. */
+  --paper:   #eceef2;   /* cool grey page background            */
+  --surface: #ffffff;   /* cards, form panel                    */
+  --ink:     #192231;    /* primary text                         */
+  --muted:   #6b7686;   /* secondary text, URLs, meta           */
+  --navy:    #27408b;   /* links, buttons, active state         */
+  --navy-dk: #1d2f66;   /* button hover                         */
+  --ribbon:  #e2a33c;   /* the bookmark-ribbon accent           */
+  --line:    #dbe0e8;   /* hairline borders                     */
+
+  /* Type */
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono:  ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Spacing + shape */
+  --radius: 8px;
+  --gap:    1.5rem;
+  --maxw:   960px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  /* a faint ruled-paper gradient at the top, like the edge of a desk */
+  background-image: linear-gradient(var(--paper), var(--paper));
+  min-height: 100vh;
+}
+
+/* ---- Shared page shell ---- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---- Site header ---- */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-block: 1.1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand__mark {
+  /* a small amber bookmark-ribbon glyph drawn in CSS */
+  width: 14px;
+  height: 20px;
+  background: var(--ribbon);
+  /* notch the bottom into a ribbon tail */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+  flex: none;
+  align-self: center;
+}
+
+.brand__name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+.brand__sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.btn--primary {
+  background: var(--navy);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--navy-dk); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--line);
+}
+.btn--ghost:hover { border-color: var(--navy); }
+
+/* ---- Footer ---- */
+
+.site-footer {
+  margin-top: 3rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---- Accessibility niceties ---- */
+
+a:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

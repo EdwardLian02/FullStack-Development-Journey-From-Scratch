@@ -1,0 +1,142 @@
+/* ============================================================
+   home.css  —  styles for the bookmark list ("/") page.
+   This page's HTML is built dynamically in your route handler
+   with res.send(`...`). These classes style that generated markup.
+   ============================================================ */
+
+.home-head {
+  padding-block: 2.25rem 1rem;
+}
+
+.home-head h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  margin: 0 0 0.35rem;
+}
+
+.home-head p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* ---- One section per category ---- */
+
+.category {
+  margin-top: 2.25rem;
+}
+
+.category__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+/* count of bookmarks in the category, set quietly beside the name */
+.category__count {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #eaeefb;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* ---- The bookmark grid ---- */
+
+.bookmarks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ---- A single bookmark card ---- */
+
+.bookmark {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.1rem 1.1rem 1.35rem;
+  overflow: hidden;
+}
+
+/* the amber ribbon spine down the left edge — the signature motif */
+.bookmark::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--ribbon);
+}
+
+.bookmark__title {
+  margin: 0 0 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.bookmark__title a {
+  color: var(--navy);
+  text-decoration: none;
+}
+.bookmark__title a:hover { text-decoration: underline; }
+
+/* URLs are machine text, so they are set in mono, truncated to one line */
+.bookmark__url {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.6rem;
+}
+
+.bookmark__notes {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+/* ---- Empty state (zero bookmarks saved) ---- */
+
+.empty {
+  margin-top: 2.5rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 3rem 1.5rem;
+}
+
+.empty__mark {
+  width: 22px;
+  height: 32px;
+  margin: 0 auto 1rem;
+  background: var(--ribbon);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+}
+
+.empty h2 {
+  font-family: var(--serif);
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+}
+
+.empty p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}

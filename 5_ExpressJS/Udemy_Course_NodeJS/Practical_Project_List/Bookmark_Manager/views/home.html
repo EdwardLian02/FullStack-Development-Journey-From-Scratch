@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your bookmarks</title>
+  <link rel="stylesheet" href="/css/general.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  THIS FILE IS A UI MOCKUP / REFERENCE ONLY.                        ║
+  ║                                                                    ║
+  ║  Your INSTRUCTIONS.md says the "/" page is built DYNAMICALLY in    ║
+  ║  the route handler with res.send(`...`), NOT served as a static    ║
+  ║  file. So you won't res.sendFile() this file.                      ║
+  ║                                                                    ║
+  ║  Instead, copy this markup into a template literal and loop over   ║
+  ║  your in-memory bookmarks with .map(). The sample content below    ║
+  ║  (two categories, four cards) shows the exact shape to generate.   ║
+  ║                                                                    ║
+  ║  Further down (commented out) is the EMPTY STATE to render when    ║
+  ║  the array is empty.                                               ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Bookmarks</span>
+        <span class="brand__sub">your saved links</span>
+      </a>
+      <a class="btn btn--primary" href="/book/add-bookmark">Add bookmark</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="home-head">
+      <h1>Everything you've saved</h1>
+      <p>Your links, grouped by category. Click a title to open it in a new tab.</p>
+    </div>
+
+    <!-- ONE <section class="category"> PER CATEGORY. Build these by grouping
+         your bookmarks array by `category`, then .map() the cards inside. -->
+
+    <section class="category">
+      <h2 class="category__title">
+        Tech
+        <span class="category__count">2</span>
+      </h2>
+
+      <ul class="bookmarks">
+        <!-- ONE <li class="bookmark"> PER BOOKMARK -->
+        <li class="bookmark">
+          <h3 class="bookmark__title">
+            <a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN Web Docs</a>
+          </h3>
+          <span class="bookmark__url">https://developer.mozilla.org</span>
+          <p class="bookmark__notes">The reference I keep coming back to for HTML, CSS and JS.</p>
+        </li>
+
+        <li class="bookmark">
+          <h3 class="bookmark__title">
+            <a href="https://nodejs.org/docs" target="_blank" rel="noopener">Node.js Docs</a>
+          </h3>
+          <span class="bookmark__url">https://nodejs.org/docs</span>
+          <!-- notes are optional — just omit the <p> when there are none -->
+        </li>
+      </ul>
+    </section>
+
+    <section class="category">
+      <h2 class="category__title">
+        Design
+        <span class="category__count">2</span>
+      </h2>
+
+      <ul class="bookmarks">
+        <li class="bookmark">
+          <h3 class="bookmark__title">
+            <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>
+          </h3>
+          <span class="bookmark__url">https://fonts.google.com</span>
+          <p class="bookmark__notes">For picking typefaces quickly.</p>
+        </li>
+
+        <li class="bookmark">
+          <h3 class="bookmark__title">
+            <a href="https://coolors.co" target="_blank" rel="noopener">Coolors</a>
+          </h3>
+          <span class="bookmark__url">https://coolors.co</span>
+          <p class="bookmark__notes">Fast palette generator.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!--
+      EMPTY STATE — render THIS instead of the sections above when your
+      bookmarks array has length 0:
+
+      <section class="empty">
+        <div class="empty__mark" aria-hidden="true"></div>
+        <h2>Nothing saved yet</h2>
+        <p>Your bookmarks will show up here once you add your first link.</p>
+        <a class="btn btn--primary" href="/add-bookmark">Add your first bookmark</a>
+      </section>
+    -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Bookmark Manager — a Section 5 Express practice project.</div>
+  </footer>
+</body>
+</html>
