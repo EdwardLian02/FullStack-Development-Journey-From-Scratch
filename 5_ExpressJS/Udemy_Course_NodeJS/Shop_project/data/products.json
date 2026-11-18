@@ -1,0 +1,20 @@
+[
+    {
+        "title": "product 1",
+        "description": "Hi there ",
+        "price": "121",
+        "imageUrl": "url"
+    },
+    {
+        "title": "fse",
+        "description": "sef",
+        "price": "2",
+        "imageUrl": "42"
+    },
+    {
+        "title": "Product 3",
+        "description": "hi p3",
+        "price": "2",
+        "imageUrl": "https:"
+    }
+]
