@@ -10,7 +10,7 @@ const products = [];
 router.get('/add-product', (req, res) => {
     console.log("Add product page")
     console.log(rootDir)
-    res.render('add-product')
+    res.render('add-product', {pageTitle: 'Add Product'})
 })
 
 router.post('/product', (req,res) => {
@@ -26,7 +26,6 @@ router.post('/product', (req,res) => {
 
     res.redirect('/')
 })
-
 
 
 // exports.routes = router;

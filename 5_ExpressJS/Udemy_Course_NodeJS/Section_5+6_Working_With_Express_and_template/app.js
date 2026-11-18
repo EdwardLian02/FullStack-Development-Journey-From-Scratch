@@ -16,12 +16,18 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+//expose current URL path to every view (used by navigation to highlight the active link)
+app.use((req, res, next) => {
+    res.locals.currentPath = req.path
+    next()
+})
+
 app.use('/admin', adminRoutes.routes) //only routes start with "/admin"
 app.use( shopRoutes) //only routes start with "/shop"
 
 app.use((req,res,next) => {
     console.log(rootDir)
-    res.status(404).render('404')
+    res.status(404).render('404', {pageTitle: 'Page Not Found'})
 })
 
 app.listen(3000, (req, res) => {

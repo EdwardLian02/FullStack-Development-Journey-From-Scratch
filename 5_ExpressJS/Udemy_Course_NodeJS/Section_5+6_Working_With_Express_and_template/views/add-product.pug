@@ -1,39 +1,26 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Add Product
-        link(rel="stylesheet", href="/css/general.css")
-        link(rel="stylesheet", href="/css/product.css")
-    body
-        header
-            .brand My Shop
-            nav
-                ul
-                    li
-                        a(href="/") Shop
-                    li
-                        a.active(href="/admin/add-product") Add Product
+extends layouts/main-layout.pug
 
-        main
-            h1.page-title Add a New Product
+block styles
+    link(rel="stylesheet", href="/css/product.css")
 
-            form(action="/admin/product", method="POST")
-                .form-control
-                    label(for="title") Title
-                    input#title(type="text", name="title", placeholder="Product title")
+block content
+    h1.page-title Add a New Product
 
-                .form-control
-                    label(for="imageUrl") Image URL
-                    input#imageUrl(type="text", name="imageUrl", placeholder="https://example.com/image.jpg")
+    form(action="/admin/product", method="POST")
+        .form-control
+            label(for="title") Title
+            input#title(type="text", name="title", placeholder="Product title")
 
-                .form-control
-                    label(for="price") Price
-                    input#price(type="number", name="price", step="0.01", placeholder="0.00")
+        .form-control
+            label(for="imageUrl") Image URL
+            input#imageUrl(type="text", name="imageUrl", placeholder="https://example.com/image.jpg")
 
-                .form-control
-                    label(for="description") Description
-                    textarea#description(name="description", placeholder="Short product description")
+        .form-control
+            label(for="price") Price
+            input#price(type="number", name="price", step="0.01", placeholder="0.00")
 
-                button.btn(type="submit") Add Product
+        .form-control
+            label(for="description") Description
+            textarea#description(name="description", placeholder="Short product description")
+
+        button.btn(type="submit") Add Product

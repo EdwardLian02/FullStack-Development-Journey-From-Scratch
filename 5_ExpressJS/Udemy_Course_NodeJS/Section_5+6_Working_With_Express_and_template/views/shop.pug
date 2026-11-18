@@ -1,35 +1,21 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title My Shop
-        link(rel="stylesheet", href="/css/general.css")
-        link(rel="stylesheet", href="/css/main.css")
-    body
-        header
-            .brand My Shop
-            nav
-                ul
-                    li
-                        a.active(href="/") Shop
-                    li
-                        a(href="/admin/add-product") Add Product
+extends layouts/main-layout.pug
 
-        main
-            h1.page-title All Products
+block styles
+    link(rel="stylesheet", href="/css/main.css")
 
-            if products.length > 0
-                .product-grid
-                    each product in products
-                        .product-card
-                            img(src=product.imageUrl, alt="Product 1")
-                            .product-info
-                                h2 #{product.title}
-                                p #{product.description}
-                                p.price $#{product.price}
-                                button.btn Add to Cart
+block content
+    h1.page-title All Products
 
-                    
-            else 
-                h1 no product
+    if products.length > 0
+        .product-grid
+            each product in products
+                .product-card
+                    img(src=product.imageUrl, alt=product.title)
+                    .product-info
+                        h2 #{product.title}
+                        p #{product.description}
+                        p.price $#{product.price}
+                        button.btn Add to Cart
+    else
+        p No products found.
+        a.btn(href="/admin/add-product") Add your first product

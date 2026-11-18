@@ -7,7 +7,7 @@ const { products } = require('../routes/admin');
 const router = express.Router();
 
 router.get('/', (req,res) => {
-     res.render('shop', {products: products})
+     res.render('shop', {products: products, pageTitle: 'My Shop'})
 });
 
 
