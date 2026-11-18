@@ -12,13 +12,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
 
+//setup ejs pug
+app.set('view engine', 'pug');
+app.set('views', './views');
 
-app.use('/admin',adminRoutes) //only routes start with "/admin"
+app.use('/admin', adminRoutes.routes) //only routes start with "/admin"
 app.use( shopRoutes) //only routes start with "/shop"
 
 app.use((req,res,next) => {
     console.log(rootDir)
-    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'))
+    res.status(404).render('404')
 })
 
 app.listen(3000, (req, res) => {

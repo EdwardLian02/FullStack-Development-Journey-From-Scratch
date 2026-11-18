@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Page Not Found
+        link(rel="stylesheet", href="/css/general.css")
+        link(rel="stylesheet", href="/css/404.css")
+    body
+        header
+            .brand My Shop
+            nav
+                ul
+                    li
+                        a(href="/") Shop
+                    li
+                        a(href="/admin/add-product") Add Product
+
+        main
+            p.error-code 404
+            p.error-message Sorry, the page you're looking for doesn't exist.
+            a.btn(href="/") Back to Shop
