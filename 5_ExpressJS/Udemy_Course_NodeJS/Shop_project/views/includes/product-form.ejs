@@ -1,0 +1,72 @@
+<%
+    /*
+      Shared by admin/add-product.ejs and admin/edit-product.ejs.
+
+      Expects: editing  boolean
+               product  {id, title, imageUrl, price, description}  (only when editing)
+    */
+    const p = editing && product ? product : {};
+%>
+<form class="form" action="<%= editing ? '/admin/edit-product' : '/admin/product' %>" method="POST">
+    <% if (editing) { %>
+        <input type="hidden" name="productId" value="<%= p.id %>">
+    <% } %>
+
+    <div class="editor">
+        <div class="form">
+            <div class="field">
+                <label for="title">Title</label>
+                <input class="input" id="title" type="text" name="title" value="<%= p.title || '' %>" placeholder="e.g. Ceramic pour-over set" required>
+            </div>
+
+            <div class="field">
+                <label for="imageUrl">Image URL</label>
+                <input class="input" id="imageUrl" type="url" name="imageUrl" value="<%= p.imageUrl || '' %>" placeholder="https://example.com/image.jpg">
+                <span class="hint">The preview updates as you type.</span>
+            </div>
+
+            <div class="field">
+                <label for="price">Price (USD)</label>
+                <input class="input num" id="price" type="number" name="price" min="0" step="0.01" value="<%= p.price || '' %>" placeholder="0.00" required>
+            </div>
+
+            <div class="field">
+                <label for="description">Description</label>
+                <textarea class="textarea" id="description" name="description" placeholder="What makes this product worth buying?"><%= p.description || '' %></textarea>
+            </div>
+
+            <div class="editor__actions">
+                <button class="btn" type="submit"><%= editing ? 'Save changes' : 'Add product' %></button>
+                <a class="btn btn--ghost" href="/admin/products">Cancel</a>
+            </div>
+        </div>
+
+        <aside class="editor__preview" aria-label="Image preview">
+            <span class="tile tile--card" id="preview">
+                <span class="tile__initial" id="preview-initial" aria-hidden="true"><%= String(p.title || '+').trim().charAt(0).toUpperCase() %></span>
+                <img id="preview-img" alt="" <%- p.imageUrl ? 'src="' + String(p.imageUrl).replace(/"/g, '&quot;') + '"' : 'hidden' %>>
+            </span>
+            <p>This is how the product appears in the shop.</p>
+        </aside>
+    </div>
+</form>
+
+<script>
+    // Live preview: mirrors the image URL and title initial as you type.
+    (function () {
+        var url = document.getElementById('imageUrl');
+        var title = document.getElementById('title');
+        var img = document.getElementById('preview-img');
+        var initial = document.getElementById('preview-initial');
+
+        function showImage() {
+            if (url.value.trim()) { img.src = url.value.trim(); img.hidden = false; }
+            else { img.hidden = true; }
+        }
+        img.addEventListener('error', function () { img.hidden = true; });
+        url.addEventListener('input', showImage);
+        title.addEventListener('input', function () {
+            initial.textContent = (title.value.trim().charAt(0) || '+').toUpperCase();
+        });
+    })();
+</script>

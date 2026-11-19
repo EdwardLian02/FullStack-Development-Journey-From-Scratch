@@ -1,0 +1,35 @@
+<%
+    /*
+      All products.
+      Expects: products  array of {id, title, price, imageUrl}
+    */
+    const list = typeof products !== 'undefined' ? products : [];
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="page-head">
+            <h1>All products</h1>
+            <% if (list.length > 0) { %>
+                <p class="page-head__meta"><%= list.length %> <%= list.length === 1 ? 'item' : 'items' %></p>
+            <% } %>
+        </div>
+
+        <% if (list.length > 0) { %>
+            <div class="product-grid">
+                <% for (const product of list) { %>
+                    <%- include('../includes/product-card.ejs', { product: product }) %>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="empty">
+                <h2>No products yet</h2>
+                <p>Products you add in the admin area will appear here.</p>
+                <a class="btn" href="/admin/add-product">Add your first product</a>
+            </div>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,38 @@
+<%
+    /*
+      Single product.
+      Expects: product  {id, title, price, imageUrl, description}
+    */
+    const money = (n) => '$' + Number(n || 0).toFixed(2);
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <a class="crumb" href="/products">&larr; All products</a>
+
+        <article class="detail">
+            <%- include('../includes/tile.ejs', { product: product, size: 'square', alt: product.title }) %>
+
+            <div>
+                <h1 class="detail__title"><%= product.title %></h1>
+                <p class="detail__price price"><%= money(product.price) %></p>
+
+                <% if (product.description) { %>
+                    <p class="detail__desc"><%= product.description %></p>
+                <% } %>
+
+                <form class="detail__buy" action="/cart" method="POST">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <div class="field">
+                        <label for="qty">Quantity</label>
+                        <input class="input input--qty num" id="qty" type="number" name="qty" min="1" max="99" value="1">
+                    </div>
+                    <button class="btn" type="submit">Add to cart</button>
+                </form>
+            </div>
+        </article>
+    </main>
+<%- include('../includes/end.ejs') %>

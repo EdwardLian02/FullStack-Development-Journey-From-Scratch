@@ -1,0 +1,63 @@
+<%
+    /*
+      Shopping cart.
+      Expects: cart  { items: [ { product: {id, title, price, imageUrl}, qty } ] }
+      The subtotal is calculated here, so the controller only has to pass the items.
+    */
+    const money = (n) => '$' + Number(n || 0).toFixed(2);
+    const items = (typeof cart !== 'undefined' && cart && cart.items) ? cart.items : [];
+    const subtotal = items.reduce((sum, i) => sum + Number(i.product.price || 0) * i.qty, 0);
+    const units = items.reduce((sum, i) => sum + i.qty, 0);
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="page-head">
+            <h1>Your cart</h1>
+            <% if (units > 0) { %><p class="page-head__meta"><%= units %> <%= units === 1 ? 'item' : 'items' %></p><% } %>
+        </div>
+
+        <% if (items.length > 0) { %>
+            <div class="split">
+                <ul class="lines">
+                    <% for (const item of items) { %>
+                        <li class="line">
+                            <%- include('../includes/tile.ejs', { product: item.product, size: 'thumb' }) %>
+                            <div>
+                                <p class="line__name"><a href="/products/<%= item.product.id %>"><%= item.product.title %></a></p>
+                                <p class="line__sub price"><%= money(item.product.price) %> each</p>
+                            </div>
+                            <p class="line__qty num">Qty <%= item.qty %></p>
+                            <p class="line__total price"><%= money(Number(item.product.price) * item.qty) %></p>
+                            <form action="/cart-delete-item" method="POST">
+                                <input type="hidden" name="productId" value="<%= item.product.id %>">
+                                <button class="btn-text" type="submit" aria-label="Remove <%= item.product.title %> from cart">Remove</button>
+                            </form>
+                        </li>
+                    <% } %>
+                </ul>
+
+                <aside class="summary" aria-label="Order summary">
+                    <h2>Summary</h2>
+                    <div class="summary__row"><span>Subtotal</span><span class="price"><%= money(subtotal) %></span></div>
+                    <div class="summary__row"><span>Shipping</span><span>Free</span></div>
+                    <div class="summary__row summary__row--total"><span>Total</span><span class="price"><%= money(subtotal) %></span></div>
+
+                    <div class="summary__actions">
+                        <a class="btn btn--block" href="/checkout">Go to checkout</a>
+                        <a class="btn btn--ghost btn--block" href="/products">Keep shopping</a>
+                    </div>
+                </aside>
+            </div>
+        <% } else { %>
+            <div class="empty">
+                <h2>Your cart is empty</h2>
+                <p>Add something from the shop and it will wait for you here.</p>
+                <a class="btn" href="/products">Browse products</a>
+            </div>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

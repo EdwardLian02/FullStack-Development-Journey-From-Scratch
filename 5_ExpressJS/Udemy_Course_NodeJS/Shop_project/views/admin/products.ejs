@@ -1,0 +1,68 @@
+<%
+    /*
+      Admin: product list (Read + links to Update/Delete).
+      Expects: products  array of {id, title, price, imageUrl, description}
+    */
+    const money = (n) => '$' + Number(n || 0).toFixed(2);
+    const list = typeof products !== 'undefined' ? products : [];
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="page-head">
+            <h1>Admin</h1>
+            <a class="btn" href="/admin/add-product">Add product</a>
+        </div>
+
+        <%- include('../includes/admin-nav.ejs') %>
+
+        <% if (list.length > 0) { %>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col" class="right">Price</th>
+                            <th scope="col" class="right"><span class="sr-only">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (const product of list) { %>
+                            <tr>
+                                <td>
+                                    <div class="table__product">
+                                        <%- include('../includes/tile.ejs', { product: product, size: 'thumb' }) %>
+                                        <div style="min-width: 0;">
+                                            <p class="table__title"><%= product.title %></p>
+                                            <% if (product.description) { %><p class="table__sub"><%= product.description %></p><% } %>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="right price"><%= money(product.price) %></td>
+                                <td>
+                                    <div class="actions">
+                                        <a class="btn btn--ghost btn--sm" href="/admin/edit-product/<%= product.id %>">Edit</a>
+                                        <form action="/admin/delete-product" method="POST"
+                                              onsubmit="return confirm('Delete &quot;<%= String(product.title).replace(/'/g, '\\\'').replace(/"/g, '') %>&quot;? This cannot be undone.');">
+                                            <input type="hidden" name="productId" value="<%= product.id %>">
+                                            <button class="btn btn--danger btn--sm" type="submit">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="empty">
+                <h2>No products to manage</h2>
+                <p>Add a product and it will be listed here, ready to edit or delete.</p>
+                <a class="btn" href="/admin/add-product">Add product</a>
+            </div>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,13 +1,31 @@
-<header>
-    <div class="brand">My Shop</div>
-    <nav>
-        <ul>
-            <li>
-                <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Shop</a>
-            </li>
-            <li>
-                <a href="/admin/add-product" class="<%= currentPath === '/admin/add-product' ? 'active' : '' %>">Add Product</a>
-            </li>
-        </ul>
-    </nav>
+<%
+    /*
+      Expects (all optional):
+        currentPath  string  - set globally in app.js via res.locals
+        cartCount    number  - total quantity in the cart; badge hidden when 0
+    */
+    const here = typeof currentPath !== 'undefined' ? currentPath : '';
+    const count = typeof cartCount !== 'undefined' ? Number(cartCount) : 0;
+    const isHome = here === '/';
+    const isProducts = here.startsWith('/products');
+    const isCart = here.startsWith('/cart') || here.startsWith('/checkout');
+    const isAdmin = here.startsWith('/admin');
+%>
+<header class="site-header">
+    <div class="site-header__inner">
+        <a class="brand" href="/">My Shop</a>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="/" class="<%= isHome ? 'active' : '' %>">Home</a></li>
+                <li><a href="/products" class="<%= isProducts ? 'active' : '' %>">Products</a></li>
+                <li>
+                    <a href="/cart" class="<%= isCart ? 'active' : '' %>">
+                        Cart
+                        <% if (count > 0) { %><span class="badge" aria-label="<%= count %> items"><%= count %></span><% } %>
+                    </a>
+                </li>
+                <li><a href="/admin/products" class="<%= isAdmin ? 'active' : '' %>">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>

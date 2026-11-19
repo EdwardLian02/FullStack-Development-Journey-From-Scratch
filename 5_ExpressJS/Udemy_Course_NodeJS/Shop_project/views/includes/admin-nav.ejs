@@ -1,0 +1,11 @@
+<%
+    const adminPath = typeof currentPath !== 'undefined' ? currentPath : '';
+    const onProducts = adminPath.startsWith('/admin/products') || adminPath.startsWith('/admin/edit-product');
+    const onAdd = adminPath.startsWith('/admin/add-product');
+    const onOrders = adminPath.startsWith('/admin/orders');
+%>
+<nav class="subnav" aria-label="Admin">
+    <a href="/admin/products" class="<%= onProducts ? 'active' : '' %>">Products</a>
+    <a href="/admin/add-product" class="<%= onAdd ? 'active' : '' %>">Add product</a>
+    <a href="/admin/orders" class="<%= onOrders ? 'active' : '' %>">Orders</a>
+</nav>

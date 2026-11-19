@@ -1,0 +1,45 @@
+<%
+    /*
+      Home page.
+      Expects: products  array of {id, title, price, imageUrl}  (the newest 4 are featured)
+    */
+    const all = typeof products !== 'undefined' ? products : [];
+    const featured = all.slice(-4).reverse();
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <section class="hero">
+            <h1 class="hero__title">Simple things, well chosen.</h1>
+            <p class="hero__lede">A small shop with a short list of products we'd happily use ourselves.</p>
+            <div class="hero__actions">
+                <a class="btn" href="/products">Shop all products</a>
+                <a class="btn btn--ghost" href="/cart">View cart</a>
+            </div>
+        </section>
+
+        <section aria-labelledby="new-heading">
+            <div class="section-head">
+                <h2 id="new-heading">New arrivals</h2>
+                <% if (all.length > 0) { %><a class="link" href="/products">See all <%= all.length %> products</a><% } %>
+            </div>
+
+            <% if (featured.length > 0) { %>
+                <div class="product-grid">
+                    <% for (const product of featured) { %>
+                        <%- include('../includes/product-card.ejs', { product: product }) %>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <div class="empty">
+                    <h2>The shelves are empty</h2>
+                    <p>Add your first product and it will show up here.</p>
+                    <a class="btn" href="/admin/add-product">Add a product</a>
+                </div>
+            <% } %>
+        </section>
+    </main>
+<%- include('../includes/end.ejs') %>

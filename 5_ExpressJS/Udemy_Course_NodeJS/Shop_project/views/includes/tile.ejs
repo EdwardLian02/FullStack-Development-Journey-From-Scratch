@@ -1,0 +1,17 @@
+<%
+    /*
+      Product image with a graceful fallback: if imageUrl is missing or fails to
+      load, the image hides and the product's first letter shows on the tile.
+
+      Expects: product {title, imageUrl}, size ('card' | 'square' | 'thumb'),
+               alt (optional string; leave out when the title is shown next to it)
+    */
+    const tileAlt = typeof alt !== 'undefined' ? alt : '';
+    const initial = String(product.title || '?').trim().charAt(0).toUpperCase();
+%>
+<span class="tile tile--<%= size %>">
+    <span class="tile__initial" aria-hidden="true"><%= initial %></span>
+    <% if (product.imageUrl) { %>
+        <img src="<%= product.imageUrl %>" alt="<%= tileAlt %>" loading="lazy" onerror="this.hidden = true">
+    <% } %>
+</span>

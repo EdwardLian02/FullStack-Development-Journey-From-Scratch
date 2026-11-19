@@ -1,0 +1,21 @@
+<%
+    /*
+      Admin: edit an existing product (Update).
+      Expects: product  {id, title, price, imageUrl, description}
+    */
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="page-head">
+            <h1>Admin</h1>
+        </div>
+
+        <%- include('../includes/admin-nav.ejs') %>
+
+        <%- include('../includes/product-form.ejs', { editing: true, product: product }) %>
+    </main>
+<%- include('../includes/end.ejs') %>

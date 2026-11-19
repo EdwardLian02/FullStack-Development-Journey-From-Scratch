@@ -1,0 +1,17 @@
+<%
+    /* Expects: product {id, title, price, imageUrl} */
+    const cardPrice = '$' + Number(product.price || 0).toFixed(2);
+%>
+<article class="product">
+    <a class="product__media" href="/products/<%= product.id %>" tabindex="-1" aria-hidden="true">
+        <%- include('tile.ejs', { product: product, size: 'card' }) %>
+    </a>
+    <h3 class="product__title"><a href="/products/<%= product.id %>"><%= product.title %></a></h3>
+    <div class="product__foot">
+        <p class="product__price price"><%= cardPrice %></p>
+        <form action="/cart" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>">
+            <button class="btn btn--ghost btn--sm" type="submit">Add to cart</button>
+        </form>
+    </div>
+</article>
