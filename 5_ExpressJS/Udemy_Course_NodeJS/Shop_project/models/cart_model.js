@@ -1,6 +1,7 @@
 const fs = require('fs/promises')
 const path = require('path')
 const rootDir = require('../util/path')
+const Product = require('./product_model')
 
 const cartPath = path.join(rootDir, 'data', 'cart.json')
 
@@ -22,16 +23,35 @@ class Cart {
         return getCartFromFile();
     }
 
+    // Returns [{ product, qty }] with full product data joined in.
+    // Entries whose product was deleted since being added are dropped.
+    static async getItems() {
+        const cart = await getCartFromFile()
+        const lines = await Promise.all(
+            cart.products.map(async ({ id, qty }) => {
+                const product = await Product.fetchById(id)
+                return product ? { product, qty: Number(qty) } : null
+            })
+        )
+        return lines.filter(Boolean)
+    }
+
     static async addProduct(id, parsedQty) {
         const cart = await getCartFromFile()
 
-      
+        // always store qty as a positive whole number (form fields arrive as strings)
+        const addQty = Math.max(1, parseInt(parsedQty, 10) || 1)
+
         const isInCart = cart.products.some((pd) => pd.id === id)
         const products = isInCart
-            ? cart.products.map((pd) => pd.id === id ? { ...pd, qty: parsedQty? Number(pd.qty) + Number(parsedQty) : pd.qty + 1 } : pd)
-            : [...cart.products, { id, qty: parsedQty? parsedQty: 1 }]
+            ? cart.products.map((pd) => pd.id === id ? { ...pd, qty: Number(pd.qty) + addQty } : pd)
+            : [...cart.products, { id, qty: addQty }]
 
         await saveCartToFile({ ...cart, products })
+    }
+
+    static async clear() {
+        await saveCartToFile({ products: [], total: 0 })
     }
 
     static async removeFromCart(id){

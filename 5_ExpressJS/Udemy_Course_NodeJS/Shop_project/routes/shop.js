@@ -4,7 +4,7 @@ const rootDir = require('../util/path');
 const { products } = require('../routes/admin');
 const { getAllProductShopPage, getProductDetail } = require('../controllers/product_controller');
 const { getCartPage, addToCart, deleteCartItem, getCheckoutPage } = require('../controllers/cart_controller');
-const { createOrder } = require('../controllers/order_controller');
+const { createOrder, getOrderConfirmationPage } = require('../controllers/order_controller');
 
 
 const router = express.Router();
@@ -17,6 +17,7 @@ router.post('/cart', addToCart);
 router.post('/cart-delete-item', deleteCartItem);
 router.get('/checkout', getCheckoutPage);
 router.post('/create-order', createOrder);
+router.get('/order-confirmation/:orderId', getOrderConfirmationPage);
 
 
 module.exports = router;

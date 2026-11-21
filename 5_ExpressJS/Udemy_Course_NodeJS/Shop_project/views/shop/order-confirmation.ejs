@@ -1,0 +1,23 @@
+<%
+    /* Shown after POST /create-order. Expects: order (see models/order_model.js) */
+    const money = (n) => '$' + Number(n || 0).toFixed(2);
+%>
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="empty">
+            <h2>Thank you, <%= order.customer.name %>!</h2>
+            <p>Your order <strong class="num">#<%= order.id %></strong> is placed. Total: <%= money(order.total) %>.
+            <% if (order.paymentMethod === 'bank-transfer') { %>
+                We'll email bank details to <%= order.customer.email %>.
+            <% } else { %>
+                Pay in cash when it arrives.
+            <% } %>
+            </p>
+            <a class="btn" href="/products">Keep shopping</a>
+        </div>
+    </main>
+<%- include('../includes/end.ejs') %>
