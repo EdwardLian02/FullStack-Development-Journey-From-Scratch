@@ -1,5 +1,16 @@
     <footer class="site-footer">
         <p>&copy; My Shop. Built while learning Node.js and Express.</p>
     </footer>
+
+    <%# Shared confirmation dialog, driven by public/js/confirm.js (forms with data-confirm) %>
+    <dialog class="modal" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+        <h2 class="modal__title" id="confirm-title">Are you sure?</h2>
+        <p class="modal__text" id="confirm-message" data-confirm-message></p>
+        <div class="modal__actions">
+            <button class="btn btn--ghost" type="button" data-confirm-cancel>Cancel</button>
+            <button class="btn btn--danger-fill" type="button" data-confirm-accept>Confirm</button>
+        </div>
+    </dialog>
+    <script src="/js/confirm.js"></script>
 </body>
 </html>

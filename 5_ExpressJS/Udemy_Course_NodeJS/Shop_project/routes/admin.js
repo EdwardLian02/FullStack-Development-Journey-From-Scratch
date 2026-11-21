@@ -4,6 +4,8 @@ const { products,
     addProduct,
     getIndexPage, 
     getEditProductPage,
+    editProduct,
+    deleteProduct,
     getProductDetail,
     getAllProductAdminPage,
 } = require('../controllers/product_controller');
@@ -14,7 +16,9 @@ const router = express.Router();
 router.get('/index', getIndexPage)
 router.get('/add-product', getAddProductPage )
 router.post('/product', addProduct)
-router.get('/edit-product', getEditProductPage)
+router.get('/edit-product/:productId', getEditProductPage)
+router.post('/edit-product', editProduct)
+router.post('/delete-product', deleteProduct)
 router.get('/product-detail', getProductDetail)
 router.get('/products', getAllProductAdminPage)
 router.get('/orders', getOrdersPage)

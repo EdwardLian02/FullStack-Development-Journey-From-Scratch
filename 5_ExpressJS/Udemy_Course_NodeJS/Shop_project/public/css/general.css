@@ -209,6 +209,16 @@ img { max-width: 100%; display: block; }
     color: #fff;
 }
 
+.btn--danger-fill {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+.btn--danger-fill:hover {
+    background: #8f1e18;
+    border-color: #8f1e18;
+}
+
 .btn--sm { padding: 0.4rem 0.9rem; font-size: 0.875rem; }
 .btn--block { width: 100%; }
 
@@ -657,6 +667,41 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .product__media:hover img { transform: none; }
+}
+
+/* Confirmation dialog (native <dialog>, see includes/end.ejs + public/js/confirm.js) */
+.modal {
+    width: min(26rem, calc(100% - 2.5rem));
+    margin: auto;
+    padding: 1.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    color: var(--ink);
+    box-shadow: 0 24px 60px -12px rgba(17, 19, 24, 0.35);
+}
+.modal[open] { animation: modal-in 0.16s ease-out; }
+.modal::backdrop {
+    background: rgba(17, 19, 24, 0.45);
+    backdrop-filter: blur(2px);
+}
+.modal__title { font-size: 1.25rem; }
+.modal__text {
+    margin-top: 0.6rem;
+    color: var(--ink-soft);
+    overflow-wrap: anywhere;
+}
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: none; }
 }
 
 /* Visually hidden, still read by screen readers */

@@ -46,7 +46,8 @@
                                     <div class="actions">
                                         <a class="btn btn--ghost btn--sm" href="/admin/edit-product/<%= product.id %>">Edit</a>
                                         <form action="/admin/delete-product" method="POST"
-                                              onsubmit="">
+                                              data-confirm-label="Delete"
+                                              data-confirm="<%= 'Delete "' + product.title + '"? This cannot be undone.' %>">
                                             <input type="hidden" name="productId" value="<%= product.id %>">
                                             <button class="btn btn--danger btn--sm" type="submit">Delete</button>
                                         </form>

@@ -31,9 +31,40 @@ const getAllProductAdminPage = async (req,res) => {
      res.render('admin/products', {products: products, pageTitle: "Admin Products Page"})
 }
 
-const getEditProductPage = (req, res) => {
-    res.render('admin/edit-product')
+const getEditProductPage = async (req, res, next) => {
+    const product = await Product.fetchById(req.params.productId);
+
+    // unknown id -> fall through to the 404 middleware
+    if (!product) return next();
+
+    res.render('admin/edit-product', {product: product, pageTitle: 'Edit Product'})
 }
+
+const editProduct = async (req, res, next) => {
+    // the form sends the id as a hidden field named "productId"
+    const { productId, title, description, price, imageUrl } = req.body;
+
+    try {
+        const updated = await Product.editProduct(productId, { title, description, price, imageUrl });
+
+        // unknown id -> fall through to the 404 middleware
+        if (!updated) return next();
+
+        res.redirect('/admin/products')
+    } catch (err) {
+        next(err)
+    }
+}
+
+const deleteProduct = async (req, res, next) => {
+    try {
+        await Product.deleteProduct(req.body.productId)
+        res.redirect('/admin/products')
+    } catch (err) {
+        next(err)
+    }
+}
+
 const getProductDetail = async (req, res, next) => {
     const product = await Product.fetchById(req.params.productId)
 
@@ -50,5 +81,7 @@ exports.addProduct = addProduct;
 exports.getAllProductShopPage = getAllProductShopPage;
 exports.getIndexPage = getIndexPage;
 exports.getEditProductPage = getEditProductPage;
+exports.editProduct = editProduct;
+exports.deleteProduct = deleteProduct;
 exports.getProductDetail = getProductDetail;
 exports.getAllProductAdminPage = getAllProductAdminPage;

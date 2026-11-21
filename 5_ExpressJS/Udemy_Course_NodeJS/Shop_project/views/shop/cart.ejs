@@ -32,7 +32,7 @@
                             </div>
                             <p class="line__qty num">Qty <%= item.qty %></p>
                             <p class="line__total price"><%= money(Number(item.product.price) * item.qty) %></p>
-                            <form action="/cart-delete-item" method="POST">
+                            <form action="/cart-delete-item" method="POST" data-confirm-label="Remove" data-confirm="<%= 'Remove "' + item.product.title + '" from your cart?' %>">
                                 <input type="hidden" name="productId" value="<%= item.product.id %>">
                                 <button class="btn-text" type="submit" aria-label="Remove <%= item.product.title %> from cart">Remove</button>
                             </form>
