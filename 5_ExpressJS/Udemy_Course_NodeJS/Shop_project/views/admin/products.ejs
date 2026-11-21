@@ -1,11 +1,8 @@
 <%
-    /*
-      Admin: product list (Read + links to Update/Delete).
-      Expects: products  array of {id, title, price, imageUrl, description}
-    */
     const money = (n) => '$' + Number(n || 0).toFixed(2);
     const list = typeof products !== 'undefined' ? products : [];
 %>
+
 <%- include('../includes/head.ejs') %>
 </head>
 <body>

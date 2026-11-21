@@ -47,7 +47,7 @@ const editProduct = async (req, res, next) => {
     try {
         const updated = await Product.editProduct(productId, { title, description, price, imageUrl });
 
-        // unknown id -> fall through to the 404 middleware
+        // unknown id > fall through to the 404 middleware
         if (!updated) return next();
 
         res.redirect('/admin/products')
@@ -68,7 +68,7 @@ const deleteProduct = async (req, res, next) => {
 const getProductDetail = async (req, res, next) => {
     const product = await Product.fetchById(req.params.productId)
 
-    // unknown id -> fall through to the 404 middleware
+    // unknown id > fall through to the 404 middleware
     if (!product) return next()
 
     res.render('shop/product-detail', {product: product, pageTitle: product.title})

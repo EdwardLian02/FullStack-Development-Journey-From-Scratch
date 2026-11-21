@@ -23,7 +23,8 @@ const getCartPage = async (req, res) => {
 }
 
 const addToCart = async (req, res, next) => {
-    await Cart.addProduct(req.body.productId);
+    const {productId, qty} = req.body;
+    await Cart.addProduct(productId, qty);
     res.redirect('/cart')
 }
 

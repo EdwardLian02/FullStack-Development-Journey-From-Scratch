@@ -1,17 +1,5 @@
 <%
-    /*
-      Admin: manage orders.
-      Expects: orders  array of
-        {
-          id, date, status,                       // status: pending | processing | shipped | delivered | cancelled
-          customer: { name, email },
-          shipping: { address, city, postalCode, country },
-          paymentMethod,
-          items: [ { title, price, qty } ],       // a snapshot of what was bought
-          total                                    // optional; calculated from items if missing
-        }
-      Status changes post to /admin/update-order-status with { orderId, status }.
-    */
+   
     const money = (n) => '$' + Number(n || 0).toFixed(2);
     const list = typeof orders !== 'undefined' ? orders : [];
     const statuses = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];

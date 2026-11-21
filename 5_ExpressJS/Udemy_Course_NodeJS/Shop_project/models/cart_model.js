@@ -22,14 +22,14 @@ class Cart {
         return getCartFromFile();
     }
 
-    static async addProduct(id) {
+    static async addProduct(id, parsedQty) {
         const cart = await getCartFromFile()
 
-        // add a new line (qty 1) or bump the qty of the existing one
+      
         const isInCart = cart.products.some((pd) => pd.id === id)
         const products = isInCart
-            ? cart.products.map((pd) => pd.id === id ? { ...pd, qty: pd.qty + 1 } : pd)
-            : [...cart.products, { id, qty: 1 }]
+            ? cart.products.map((pd) => pd.id === id ? { ...pd, qty: parsedQty? Number(pd.qty) + Number(parsedQty) : pd.qty + 1 } : pd)
+            : [...cart.products, { id, qty: parsedQty? parsedQty: 1 }]
 
         await saveCartToFile({ ...cart, products })
     }
