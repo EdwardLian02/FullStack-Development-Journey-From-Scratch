@@ -1,8 +1,14 @@
-const Product = require('../models/product_model')
+const Product = require('../models/product_model');
+
+const { products } = require('../routes/admin');
 const rootDir = require('../util/path')
 
+const getIndexPage = (req, res) =>{
+    res.render('shop/index');
+}
+ 
 const getAddProductPage = (req, res) => {
-    res.render('add-product', {pageTitle: 'Add Product'})
+    res.render('admin/add-product', {pageTitle: 'Add Product'})
 }
 
 
@@ -18,9 +24,31 @@ const addProduct = async (req,res,next) => {
 
 const getAllProductShopPage = async (req,res) => {
     const products = await Product.fetchAll();
-     res.render('shop', {products: products, pageTitle: 'My Shop'})
+     res.render('shop/product-list', {products: products, pageTitle: 'My Shop'})
 }
+const getAllProductAdminPage = async (req,res) => {
+      const products = await Product.fetchAll();
+     res.render('admin/products', {products: products, pageTitle: "Admin Products Page"})
+}
+
+const getEditProductPage = (req, res) => {
+    res.render('admin/edit-product')
+}
+const getProductDetail = async (req, res, next) => {
+    const product = await Product.fetchById(req.params.productId)
+
+    // unknown id -> fall through to the 404 middleware
+    if (!product) return next()
+
+    res.render('shop/product-detail', {product: product, pageTitle: product.title})
+}
+
+
 
 exports.getAddProductPage = getAddProductPage;
 exports.addProduct = addProduct;
 exports.getAllProductShopPage = getAllProductShopPage;
+exports.getIndexPage = getIndexPage;
+exports.getEditProductPage = getEditProductPage;
+exports.getProductDetail = getProductDetail;
+exports.getAllProductAdminPage = getAllProductAdminPage;

@@ -4,6 +4,7 @@ const rootDir = require('../util/path');
 
 module.exports = class Product {
     constructor(title, description, price, imageUrl) {
+        this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
         this.price = price;
@@ -33,5 +34,18 @@ module.exports = class Product {
             console.log(err);
             return [];
         }
+    }
+
+    static async fetchById(id){
+         const p = path.join(rootDir, 'data', 'products.json')
+         try {
+            const fileContent = await fs.readFile(p, 'utf8');
+            const products = JSON.parse(fileContent);
+            return products.find((prd) => prd.id === id);
+        } catch (err) {
+            console.log(err);
+            return;
+        }
+
     }
 }

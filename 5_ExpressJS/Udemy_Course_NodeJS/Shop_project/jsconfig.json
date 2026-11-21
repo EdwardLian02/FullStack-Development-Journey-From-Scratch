@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "checkJs": false,
+        "module": "commonjs"
+    },
+    "include": [
+        "**/*.js"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
